@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/config/LevelConfig.gd" id="1_config"]
+
+[resource]
+script = ExtResource("1_config")
+
+# Level Info
+level_number = 1
+level_type = 1
+max_moves = 25
+goal_description = "Clear 30 gems!"
+
+# Clear Count
+target_clears = 30
+
+# Star Thresholds
+star_1_threshold = 30
+star_2_threshold = 45
+star_3_threshold = 60

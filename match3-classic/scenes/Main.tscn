@@ -1,0 +1,460 @@
+[gd_scene load_steps=18 format=3 uid="uid://c8qnk3yl5vm2j"]
+
+[ext_resource type="PackedScene" uid="uid://b1nv8q2k4yt6m" path="res://scenes/GameBoard.tscn" id="1_board"]
+[ext_resource type="Script" uid="uid://cegug17v218ct" path="res://scripts/Main.gd" id="2_main"]
+[ext_resource type="Texture2D" uid="uid://ceqfw4sd65adw" path="res://assets/backgrounds/background_royal.png" id="3_bg"]
+[ext_resource type="Texture2D" uid="uid://n6a2hbc3yuht" path="res://assets/ui/royal/panel_background.png" id="4_panel_bg"]
+[ext_resource type="Texture2D" uid="uid://d1a0n18vo3bwe" path="res://assets/ui/royal/top_background.png" id="5_top_bg"]
+[ext_resource type="Texture2D" uid="uid://b5m8wvvr7a63w" path="res://assets/ui/royal/grid_background.png" id="6_grid"]
+[ext_resource type="Texture2D" uid="uid://bnaogoyq3et3e" path="res://assets/ui/royal/bottom_background.png" id="7_bottom_bg"]
+[ext_resource type="Texture2D" uid="uid://cg1g58w0jsv2f" path="res://assets/ui/royal/booster_unlocked.png" id="8_booster_unlocked"]
+[ext_resource type="Texture2D" uid="uid://c60g78ynpr8jy" path="res://assets/ui/royal/booster_locked.png" id="9_booster_locked"]
+[ext_resource type="Texture2D" uid="uid://dp2s0b0ieb3ee" path="res://assets/ui/royal/button_settings.png" id="11_settings"]
+[ext_resource type="Texture2D" path="res://assets/ui/royal/icon_hammer.png" id="12_icon_hammer"]
+[ext_resource type="Texture2D" path="res://assets/ui/royal/icon_switch.png" id="13_icon_switch"]
+[ext_resource type="Texture2D" path="res://assets/ui/royal/icon_shuffle.png" id="14_icon_shuffle"]
+[ext_resource type="Texture2D" path="res://assets/ui/royal/icon_bomb.png" id="15_icon_bomb"]
+[ext_resource type="Texture2D" path="res://assets/ui/royal/icon_moves.png" id="16_icon_moves"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_transparent"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("2_main")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BoardContainer" type="Node2D" parent="."]
+position = Vector2(0, 100)
+
+[node name="GridBackground" type="TextureRect" parent="BoardContainer"]
+offset_left = 20.0
+offset_top = 175.0
+offset_right = 700.0
+offset_bottom = 855.0
+texture = ExtResource("6_grid")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="GameBoard" parent="BoardContainer" instance=ExtResource("1_board")]
+position = Vector2(0, -45)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TopBarContainer" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 200.0
+
+[node name="TopBackground" type="TextureRect" parent="UI/TopBarContainer"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -146.0
+offset_right = 722.0
+offset_bottom = 193.0
+texture = ExtResource("5_top_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TargetPanel" type="TextureRect" parent="UI/TopBarContainer"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 11.0
+offset_right = 169.0
+offset_bottom = 164.0
+texture = ExtResource("4_panel_bg")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TargetHeader" type="Label" parent="UI/TopBarContainer/TargetPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 8.0
+offset_right = 50.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.3, 0.2, 0.1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "TARGET"
+horizontal_alignment = 1
+
+[node name="ScoreValue" type="Label" parent="UI/TopBarContainer/TargetPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -20.0
+offset_right = 65.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.25, 0.2, 0.15, 1)
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TargetValue" type="Label" parent="UI/TopBarContainer/TargetPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 18.0
+offset_right = 60.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4, 0.35, 0.25, 0.8)
+theme_override_font_sizes/font_size = 16
+text = "/ 5,000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovesPanel" type="TextureRect" parent="UI/TopBarContainer"]
+layout_mode = 0
+offset_left = 556.0
+offset_top = 12.0
+offset_right = 690.0
+offset_bottom = 166.0
+texture = ExtResource("4_panel_bg")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MovesHeader" type="Label" parent="UI/TopBarContainer/MovesPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.3, 0.2, 0.1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "MOVES"
+horizontal_alignment = 1
+
+[node name="MovesValue" type="Label" parent="UI/TopBarContainer/MovesPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -10.0
+offset_right = 60.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.25, 0.2, 0.15, 1)
+theme_override_font_sizes/font_size = 48
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomBarContainer" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -220.0
+
+[node name="BottomBackground" type="TextureRect" parent="UI/BottomBarContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("7_bottom_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BoosterPanel" type="PanelContainer" parent="UI/BottomBarContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 90.0
+offset_right = -10.0
+offset_bottom = -25.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_transparent")
+
+[node name="BoosterContainer" type="HBoxContainer" parent="UI/BottomBarContainer/BoosterPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("11_settings")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HammerButton" type="TextureButton" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_booster_unlocked")
+texture_disabled = ExtResource("9_booster_locked")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/HammerButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -30.0
+offset_right = 25.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_icon_hammer")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HammerLabel" type="Label" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/HammerButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.15, 0.05, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 1
+
+[node name="SwitchButton" type="TextureButton" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_booster_unlocked")
+texture_disabled = ExtResource("9_booster_locked")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/SwitchButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -30.0
+offset_right = 25.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_icon_switch")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SwitchLabel" type="Label" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/SwitchButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.15, 0.05, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 1
+
+[node name="ShuffleButton" type="TextureButton" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_booster_unlocked")
+texture_disabled = ExtResource("9_booster_locked")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/ShuffleButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -30.0
+offset_right = 25.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_icon_shuffle")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShuffleLabel" type="Label" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/ShuffleButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.15, 0.05, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "2"
+horizontal_alignment = 1
+
+[node name="BombButton" type="TextureButton" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_booster_unlocked")
+texture_disabled = ExtResource("9_booster_locked")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/BombButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -30.0
+offset_right = 25.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_icon_bomb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BombLabel" type="Label" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/BombButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.15, 0.05, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 1
+
+[node name="MovesButton" type="TextureButton" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_booster_unlocked")
+texture_disabled = ExtResource("9_booster_locked")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/MovesButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -30.0
+offset_right = 25.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_icon_moves")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MovesLabel" type="Label" parent="UI/BottomBarContainer/BoosterPanel/BoosterContainer/MovesButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.15, 0.05, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "2"
+horizontal_alignment = 1
+
+[node name="ComboTextLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ComboText" type="Label" parent="ComboTextLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.3, 0.15, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UI/BottomBarContainer/BoosterPanel/BoosterContainer/SettingsButton" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="UI/BottomBarContainer/BoosterPanel/BoosterContainer/HammerButton" to="." method="_on_hammer_pressed"]
+[connection signal="pressed" from="UI/BottomBarContainer/BoosterPanel/BoosterContainer/SwitchButton" to="." method="_on_switch_pressed"]
+[connection signal="pressed" from="UI/BottomBarContainer/BoosterPanel/BoosterContainer/ShuffleButton" to="." method="_on_shuffle_pressed"]
+[connection signal="pressed" from="UI/BottomBarContainer/BoosterPanel/BoosterContainer/BombButton" to="." method="_on_bomb_pressed"]
+[connection signal="pressed" from="UI/BottomBarContainer/BoosterPanel/BoosterContainer/MovesButton" to="." method="_on_moves_pressed"]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/config/LevelConfig.gd" id="1_config"]
+
+[resource]
+script = ExtResource("1_config")
+
+# Level Info
+level_number = 4
+level_type = 3
+max_moves = 25
+goal_description = "Create 3 special gems!"
+
+# Special Creation
+target_specials = 3
+
+# Star Thresholds
+star_1_threshold = 3
+star_2_threshold = 5
+star_3_threshold = 8

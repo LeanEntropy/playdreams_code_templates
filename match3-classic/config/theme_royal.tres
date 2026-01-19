@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="ThemeConfig" load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://scripts/config/ThemeConfig.gd" id="1_theme"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_royal_1.png" id="2_gem1"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_royal_2.png" id="3_gem2"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_royal_3.png" id="4_gem3"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_royal_4.png" id="5_gem4"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_royal_5.png" id="6_gem5"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_royal_6.png" id="7_gem6"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/background_royal.png" id="8_bg"]
+[ext_resource type="AudioStream" path="res://assets/audio/swap.mp3" id="9_swap"]
+[ext_resource type="AudioStream" path="res://assets/audio/match.mp3" id="10_match"]
+[ext_resource type="AudioStream" path="res://assets/audio/special.ogg" id="11_special"]
+[ext_resource type="AudioStream" path="res://assets/audio/cascade.mp3" id="12_cascade"]
+
+[resource]
+script = ExtResource("1_theme")
+
+# Theme Info
+theme_name = "royal"
+theme_description = "Royal Matching theme with purple and gold styling"
+
+# Gem Textures
+gem_texture_1 = ExtResource("2_gem1")
+gem_texture_2 = ExtResource("3_gem2")
+gem_texture_3 = ExtResource("4_gem3")
+gem_texture_4 = ExtResource("5_gem4")
+gem_texture_5 = ExtResource("6_gem5")
+gem_texture_6 = ExtResource("7_gem6")
+
+# Selection
+selection_ring_color = Color(1, 0.85, 0.3, 1)
+
+# Background - purple star pattern
+background_texture = ExtResource("8_bg")
+background_color = Color(0.4, 0.25, 0.55, 1)
+board_background_color = Color(0.72, 0.65, 0.8, 0.95)
+
+# Audio
+swap_sound = ExtResource("9_swap")
+match_sound = ExtResource("10_match")
+special_sound = ExtResource("11_special")
+cascade_sound = ExtResource("12_cascade")
+
+# UI Colors - Royal purple/gold theme
+ui_panel_color = Color(0.2, 0.12, 0.3, 0.95)
+ui_panel_border_color = Color(0.85, 0.65, 0.25, 1.0)
+ui_button_color = Color(0.85, 0.35, 0.45, 1.0)
+ui_button_hover_color = Color(0.95, 0.45, 0.55, 1.0)
+ui_button_pressed_color = Color(0.7, 0.25, 0.35, 1.0)
+ui_accent_color = Color(0.95, 0.8, 0.35, 1.0)
+ui_success_color = Color(0.4, 0.85, 0.45, 1.0)
+ui_fail_color = Color(0.9, 0.35, 0.35, 1.0)
+ui_text_color = Color(1.0, 1.0, 1.0, 1.0)
+ui_text_secondary_color = Color(0.85, 0.8, 0.95, 1.0)
+ui_overlay_color = Color(0.1, 0.05, 0.15, 0.8)

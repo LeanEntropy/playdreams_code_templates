@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ThemeConfig" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/config/ThemeConfig.gd" id="1_theme"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_1.png" id="2_gem1"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_2.png" id="3_gem2"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_3.png" id="4_gem3"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_4.png" id="5_gem4"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_5.png" id="6_gem5"]
+[ext_resource type="Texture2D" path="res://assets/gems/gem_6.png" id="7_gem6"]
+
+[resource]
+script = ExtResource("1_theme")
+
+# Theme Info
+theme_name = "puzzle_gems"
+theme_description = "Colorblind-friendly glossy gems - 4 distinct shapes (diamond, hexagon, rectangle, square) by Kenney"
+
+# Gem Textures (6 distinct shapes for accessibility)
+gem_texture_1 = ExtResource("2_gem1")
+gem_texture_2 = ExtResource("3_gem2")
+gem_texture_3 = ExtResource("4_gem3")
+gem_texture_4 = ExtResource("5_gem4")
+gem_texture_5 = ExtResource("6_gem5")
+gem_texture_6 = ExtResource("7_gem6")
+
+# Selection
+selection_ring_color = Color(1, 0.85, 0.3, 1)
+
+# Background - cream checkerboard
+background_color = Color(0.96, 0.92, 0.84, 1)
+board_background_color = Color(0.92, 0.85, 0.72, 0.98)

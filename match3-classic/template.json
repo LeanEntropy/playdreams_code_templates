@@ -1,0 +1,91 @@
+{
+  "id": "match3-classic",
+  "name": "Match-3 Classic",
+  "version": "1.0.0",
+  "genreIds": ["casual/puzzle/match-3", "casual/puzzle", "casual"],
+  "keywords": [
+    "match",
+    "match-3",
+    "match3",
+    "candy",
+    "crush",
+    "bejeweled",
+    "puzzle",
+    "gems",
+    "jewels",
+    "swap",
+    "cascade",
+    "combo",
+    "special",
+    "grid",
+    "tiles",
+    "colors",
+    "casual",
+    "three",
+    "3",
+    "row",
+    "line"
+  ],
+  "dimension": "2d",
+  "godotVersion": "4.5",
+  "license": "MIT",
+  "features": [
+    "grid-based-matching",
+    "cascade-falling-system",
+    "special-gem-creation",
+    "combo-multipliers",
+    "move-based-gameplay",
+    "level-configuration",
+    "theme-system",
+    "booster-power-ups",
+    "sound-manager"
+  ],
+  "coreFiles": [
+    "scripts/board/GameBoard.gd",
+    "scripts/board/Gem.gd",
+    "scripts/board/SpecialCombinations.gd",
+    "scripts/autoload/GameManager.gd",
+    "scripts/autoload/ConfigManager.gd",
+    "scripts/config/GameConfig.gd",
+    "scripts/config/LevelConfig.gd",
+    "scripts/config/ThemeConfig.gd"
+  ],
+  "customizableAreas": [
+    {
+      "area": "visual-theme",
+      "files": ["assets/gems/", "assets/backgrounds/", "assets/ui/", "config/theme_*.tres"],
+      "description": "Gem sprites, backgrounds, UI elements, theme resources",
+      "priority": "high"
+    },
+    {
+      "area": "game-rules",
+      "files": ["config/game_config.tres", "scripts/config/GameConfig.gd"],
+      "description": "Grid size, min match, timing, scoring, boosters",
+      "priority": "high"
+    },
+    {
+      "area": "level-design",
+      "files": ["config/levels/"],
+      "description": "Level configurations (moves, targets, grid layout)",
+      "priority": "high"
+    },
+    {
+      "area": "special-combinations",
+      "files": ["scripts/board/SpecialCombinations.gd", "scripts/board/Gem.gd"],
+      "description": "Special gem types and combination effects",
+      "priority": "medium"
+    },
+    {
+      "area": "ui-dialogs",
+      "files": ["scripts/ui/", "scenes/Main.tscn"],
+      "description": "Game dialogs, menus, HUD elements",
+      "priority": "medium"
+    },
+    {
+      "area": "audio",
+      "files": ["assets/audio/", "scripts/autoload/SoundManager.gd"],
+      "description": "Sound effects for matches, cascades, specials",
+      "priority": "low"
+    }
+  ]
+}

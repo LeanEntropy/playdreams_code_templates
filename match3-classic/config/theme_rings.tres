@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ThemeConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/config/ThemeConfig.gd" id="1_theme"]
+
+[resource]
+script = ExtResource("1_theme")
+
+# Theme Info
+theme_name = "rings"
+theme_description = "Metallic ring-style gems with cream checkerboard background"
+
+# No gem textures - uses procedural metallic rings
+
+# Selection
+selection_ring_color = Color(1, 0.85, 0.3, 1)
+
+# Background - no texture, uses shader checkerboard
+background_color = Color(0.96, 0.92, 0.84, 1)
+board_background_color = Color(0.92, 0.85, 0.72, 0.98)

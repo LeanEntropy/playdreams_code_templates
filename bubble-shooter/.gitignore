@@ -1,0 +1,44 @@
+# Godot 4+ specific ignores
+.godot/
+
+# Godot import files
+*.import
+
+# Documentation (development only)
+docs/
+
+# Claude-related files
+CLAUDE.md
+.claude/
+tmpclaude*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Export templates and builds
+export/
+build/
+*.exe
+*.x86_64
+*.apk
+*.aab
+
+# Backup files
+*.bak
+*.backup
+
+# Log files
+*.log

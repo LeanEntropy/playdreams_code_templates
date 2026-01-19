@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="GameConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/config/GameConfig.gd" id="1_config"]
+
+[resource]
+script = ExtResource("1_config")
+
+# Grid Settings
+grid_width = 8
+grid_height = 8
+min_match = 3
+
+# Timing (seconds) - Fast and snappy animations, no delays
+swap_duration = 0.08
+drop_duration = 0.04
+explode_duration = 0.08
+spawn_duration = 0.06
+match_highlight_time = 0.02
+special_flash_duration = 0.05
+special_shrink_duration = 0.08
+selection_pulse_duration = 0.15
+hover_scale_duration = 0.08
+transform_delay = 0.0
+combo_text_duration = 1.0
+
+# Scoring
+score_per_gem = 10
+combo_multiplier = 1.5
+special_4_bonus = 50
+special_5_bonus = 100
+special_lt_bonus = 150
+
+# Visual
+base_gem_size = 64
+gem_spacing = 4
+min_tile_size = 40
+max_tile_size = 80
+
+# Game Rules
+starting_moves = 30
+target_score = 10000
+
+# UI Margins (portrait mode)
+margin_top_portrait = 90.0
+margin_bottom_portrait = 340.0
+margin_sides_portrait = 40.0
+
+# UI Margins (landscape mode)
+margin_top_landscape = 80.0
+margin_bottom_landscape = 60.0
+margin_sides_landscape = 200.0
+
+# Colors
+board_background_color = Color(0.72, 0.65, 0.8, 0.95)
+grid_line_color = Color(0.6, 0.5, 0.7, 0.5)

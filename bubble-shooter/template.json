@@ -1,0 +1,78 @@
+{
+  "id": "bubble-shooter",
+  "name": "Bubble Shooter",
+  "version": "1.0.0",
+  "genreIds": ["casual/puzzle/bubble-shooter", "casual/puzzle", "casual/arcade"],
+  "keywords": [
+    "bubble",
+    "shooter",
+    "pop",
+    "aim",
+    "arcade",
+    "match",
+    "hex",
+    "hexagonal",
+    "grid",
+    "balls",
+    "spheres",
+    "physics",
+    "aim",
+    "launch",
+    "puzzle",
+    "casual",
+    "colorful",
+    "bouncing"
+  ],
+  "dimension": "2d",
+  "godotVersion": "4.5",
+  "license": "MIT",
+  "features": [
+    "hexagonal-grid-system",
+    "physics-aiming-with-trajectory",
+    "bubble-matching-algorithm",
+    "combo-scoring-system",
+    "falling-bubble-physics",
+    "timed-gameplay",
+    "row-progression"
+  ],
+  "coreFiles": [
+    "scripts/bubble_grid.gd",
+    "scripts/shooter.gd",
+    "scripts/bubble.gd",
+    "scripts/config.gd",
+    "scripts/game_state.gd",
+    "scripts/main.gd"
+  ],
+  "customizableAreas": [
+    {
+      "area": "visual-style",
+      "files": ["assets/sprites/", "scenes/ui/"],
+      "description": "Bubble sprites, UI theme, colors, backgrounds",
+      "priority": "high"
+    },
+    {
+      "area": "game-rules",
+      "files": ["scripts/config.gd"],
+      "description": "Grid size, match count, timing, scoring constants",
+      "priority": "high"
+    },
+    {
+      "area": "scoring-system",
+      "files": ["scripts/config.gd", "scripts/game_state.gd"],
+      "description": "Point values, combo multipliers, time bonuses",
+      "priority": "medium"
+    },
+    {
+      "area": "ui-layout",
+      "files": ["scenes/ui/", "scripts/ui/"],
+      "description": "HUD, game over screen, leaderboard",
+      "priority": "medium"
+    },
+    {
+      "area": "audio",
+      "files": ["assets/audio/"],
+      "description": "Sound effects for pops, launches, combos",
+      "priority": "low"
+    }
+  ]
+}

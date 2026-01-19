@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/config/LevelConfig.gd" id="1_config"]
+
+[resource]
+script = ExtResource("1_config")
+
+# Level Info
+level_number = 5
+level_type = 4
+max_moves = 30
+goal_description = "Collect 15 blue and 15 red gems!"
+
+# Color Collection
+target_color_1 = 1
+target_color_1_count = 15
+target_color_2 = 5
+target_color_2_count = 15
+
+# Star Thresholds
+star_1_threshold = 30
+star_2_threshold = 45
+star_3_threshold = 60
