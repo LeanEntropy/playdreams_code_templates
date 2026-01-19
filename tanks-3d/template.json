@@ -1,0 +1,86 @@
+{
+  "id": "tanks-3d",
+  "name": "3D Tank Game",
+  "version": "1.0.0",
+  "genreIds": ["mid-core/action/vehicle-combat", "mid-core/simulation/vehicle", "mid-core/action"],
+  "keywords": [
+    "tank game",
+    "3d tank",
+    "tank battle",
+    "tank combat",
+    "tank controls",
+    "military tank",
+    "tank turret",
+    "tank barrel",
+    "tank warfare",
+    "armored tank",
+    "tank simulator"
+  ],
+  "dimension": "3d",
+  "godotVersion": "4.5",
+  "license": "MIT",
+  "features": [
+    "tank-controller-with-turret-barrel",
+    "seven-player-controller-modes",
+    "three-camera-architecture",
+    "config-driven-design",
+    "component-based-shooting",
+    "fbx-mesh-workflow",
+    "modular-player-controllers",
+    "projectile-system"
+  ],
+  "coreFiles": [
+    "code/player_controllers/tank_controller.gd",
+    "code/player_controller.gd",
+    "code/game_config.gd",
+    "code/shooting_manager.gd",
+    "code/components/shooting_component.gd",
+    "code/components/weapon_component.gd",
+    "code/main.gd",
+    "game_config.cfg"
+  ],
+  "customizableAreas": [
+    {
+      "area": "tank-controls",
+      "files": ["game_config.cfg", "code/player_controllers/tank_controller.gd"],
+      "description": "Tank movement speed, turret rotation, barrel pitch, mouse sensitivity",
+      "priority": "high"
+    },
+    {
+      "area": "controller-modes",
+      "files": ["game_config.cfg", "code/player_controllers/"],
+      "description": "Switch between 7 controller modes: tank, first_person, third_person, over_the_shoulder, top_down, isometric, free_camera",
+      "priority": "high"
+    },
+    {
+      "area": "shooting-system",
+      "files": ["game_config.cfg", "code/shooting_manager.gd", "code/components/shooting_component.gd"],
+      "description": "Fire rate, projectile speed, damage, ammo settings",
+      "priority": "high"
+    },
+    {
+      "area": "visual-style",
+      "files": ["assets/", "assets/3d_models/tanks/", "assets/UI/"],
+      "description": "Tank models, weapon models, UI elements, crosshair",
+      "priority": "medium"
+    },
+    {
+      "area": "camera-settings",
+      "files": ["game_config.cfg"],
+      "description": "Camera distance, height, FOV for each controller mode",
+      "priority": "medium"
+    },
+    {
+      "area": "projectile-effects",
+      "files": ["game_config.cfg", "code/tank_projectile.gd", "code/projectile_hit_effect.gd"],
+      "description": "Projectile appearance, hit effects, particle settings",
+      "priority": "low"
+    },
+    {
+      "area": "ui-settings",
+      "files": ["game_config.cfg", "code/UI/"],
+      "description": "Crosshair, title screen, pause menu",
+      "priority": "low"
+    }
+  ]
+}

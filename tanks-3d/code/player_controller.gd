@@ -1,0 +1,62 @@
+extends CharacterBody3D
+
+var current_controller
+
+func _ready():
+	if GameConfig.is_loaded:
+		initialize_controller()
+	else:
+		GameConfig.config_loaded.connect(initialize_controller)
+
+
+func initialize_controller():
+	# Cleanup previous controller if exists
+	if current_controller:
+		Log.info("Cleaning up previous controller")
+		if current_controller.has_method("cleanup"):
+			current_controller.cleanup()
+		current_controller.queue_free()
+		current_controller = null
+
+	# Use GameConfig singleton instead of creating new ConfigFile
+	var control_mode = GameConfig.get_value("global", "controller_mode", "first_person")
+
+	match control_mode:
+		"first_person":
+			current_controller = load("res://code/player_controllers/first_person_controller.gd").new()
+		"third_person":
+			current_controller = load("res://code/player_controllers/third_person_controller.gd").new()
+		"over_the_shoulder":
+			current_controller = load("res://code/player_controllers/over_the_shoulder_controller.gd").new()
+		"top_down":
+			current_controller = load("res://code/player_controllers/top_down_controller.gd").new()
+		"isometric":
+			current_controller = load("res://code/player_controllers/isometric_controller.gd").new()
+		"free_camera":
+			current_controller = load("res://code/player_controllers/free_camera_controller.gd").new()
+		"tank":
+			current_controller = load("res://code/player_controllers/tank_controller.gd").new()
+		_:
+			Log.warning("Invalid control mode '%s' set in game_config.cfg. Defaulting to first_person." % control_mode)
+			current_controller = load("res://code/player_controllers/first_person_controller.gd").new()
+	
+	if current_controller:
+		add_child(current_controller)
+		current_controller.initialize(self)
+
+
+func _unhandled_input(event):
+	if get_tree().paused:
+		return
+	if current_controller:
+		# Log.start_performance_check("unhandled_input")
+		current_controller.handle_input(event)
+		# Log.end_performance_check("unhandled_input")
+
+func _physics_process(delta):
+	if get_tree().paused:
+		return
+	if current_controller:
+		# Log.start_performance_check("physics_process")
+		current_controller.handle_physics(delta)
+		# Log.end_performance_check("physics_process")
