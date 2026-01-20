@@ -1,0 +1,194 @@
+[gd_scene load_steps=4 format=3 uid="uid://char_creator"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterCreator.gd" id="1_creator"]
+[ext_resource type="Texture2D" uid="uid://dkrq0yv6cgnvw" path="res://Assets/body/char_a_p1_0bas_humn_v01.png" id="2_body"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.15, 0.15, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.4, 0.5, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CharacterCreator" type="Node2D"]
+script = ExtResource("1_creator")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.1, 0.12, 0.18, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 440.0
+offset_top = 30.0
+offset_right = 840.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 32
+text = "Character Creator"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterPreview" type="Node2D" parent="."]
+position = Vector2(640, 300)
+scale = Vector2(4, 4)
+
+[node name="Body" type="Sprite2D" parent="CharacterPreview"]
+texture = ExtResource("2_body")
+hframes = 8
+vframes = 8
+frame = 0
+
+[node name="Outfit" type="Sprite2D" parent="CharacterPreview"]
+hframes = 8
+vframes = 8
+frame = 0
+
+[node name="Hair" type="Sprite2D" parent="CharacterPreview"]
+hframes = 8
+vframes = 8
+frame = 0
+
+[node name="Accessory" type="Sprite2D" parent="CharacterPreview"]
+hframes = 8
+vframes = 8
+frame = 0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="LeftPanel" type="Panel" parent="UI"]
+offset_left = 50.0
+offset_top = 120.0
+offset_right = 380.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="UI/LeftPanel"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 310.0
+offset_bottom = 460.0
+theme_override_constants/separation = 15
+
+[node name="BodyLabel" type="Label" parent="UI/LeftPanel/VBox"]
+layout_mode = 2
+text = "Body"
+horizontal_alignment = 1
+
+[node name="BodyButtons" type="HBoxContainer" parent="UI/LeftPanel/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="BodyTypeBtn" type="Button" parent="UI/LeftPanel/VBox/BodyButtons"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Body Type"
+
+[node name="SkinBtn" type="Button" parent="UI/LeftPanel/VBox/BodyButtons"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Skin Tone"
+
+[node name="HairLabel" type="Label" parent="UI/LeftPanel/VBox"]
+layout_mode = 2
+text = "Hair"
+horizontal_alignment = 1
+
+[node name="HairButtons" type="HBoxContainer" parent="UI/LeftPanel/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="HairStyleBtn" type="Button" parent="UI/LeftPanel/VBox/HairButtons"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Hair Style"
+
+[node name="HairColorBtn" type="Button" parent="UI/LeftPanel/VBox/HairButtons"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Hair Color"
+
+[node name="OutfitLabel" type="Label" parent="UI/LeftPanel/VBox"]
+layout_mode = 2
+text = "Outfit"
+horizontal_alignment = 1
+
+[node name="OutfitButtons" type="HBoxContainer" parent="UI/LeftPanel/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="OutfitStyleBtn" type="Button" parent="UI/LeftPanel/VBox/OutfitButtons"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Outfit Style"
+
+[node name="OutfitColorBtn" type="Button" parent="UI/LeftPanel/VBox/OutfitButtons"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Outfit Color"
+
+[node name="AccessoryLabel" type="Label" parent="UI/LeftPanel/VBox"]
+layout_mode = 2
+text = "Accessory"
+horizontal_alignment = 1
+
+[node name="AccessoryButtons" type="HBoxContainer" parent="UI/LeftPanel/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="AccessoryStyleBtn" type="Button" parent="UI/LeftPanel/VBox/AccessoryButtons"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Accessory"
+
+[node name="AccessoryColorBtn" type="Button" parent="UI/LeftPanel/VBox/AccessoryButtons"]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Color"
+
+[node name="RightPanel" type="Panel" parent="UI"]
+offset_left = 900.0
+offset_top = 120.0
+offset_right = 1230.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/RightPanel"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 310.0
+offset_bottom = 260.0
+theme_override_constants/separation = 20
+
+[node name="NameLabel" type="Label" parent="UI/RightPanel/VBoxContainer"]
+layout_mode = 2
+text = "Character Name:"
+
+[node name="NameEdit" type="LineEdit" parent="UI/RightPanel/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter name..."
+
+[node name="Spacer" type="Control" parent="UI/RightPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="UI/RightPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Start Game"
+
+[connection signal="pressed" from="UI/LeftPanel/VBox/BodyButtons/BodyTypeBtn" to="." method="_on_body_type_pressed"]
+[connection signal="pressed" from="UI/LeftPanel/VBox/BodyButtons/SkinBtn" to="." method="_on_skin_pressed"]
+[connection signal="pressed" from="UI/LeftPanel/VBox/HairButtons/HairStyleBtn" to="." method="_on_hair_style_pressed"]
+[connection signal="pressed" from="UI/LeftPanel/VBox/HairButtons/HairColorBtn" to="." method="_on_hair_color_pressed"]
+[connection signal="pressed" from="UI/LeftPanel/VBox/OutfitButtons/OutfitStyleBtn" to="." method="_on_outfit_style_pressed"]
+[connection signal="pressed" from="UI/LeftPanel/VBox/OutfitButtons/OutfitColorBtn" to="." method="_on_outfit_color_pressed"]
+[connection signal="pressed" from="UI/LeftPanel/VBox/AccessoryButtons/AccessoryStyleBtn" to="." method="_on_accessory_style_pressed"]
+[connection signal="pressed" from="UI/LeftPanel/VBox/AccessoryButtons/AccessoryColorBtn" to="." method="_on_accessory_color_pressed"]
+[connection signal="text_changed" from="UI/RightPanel/VBoxContainer/NameEdit" to="." method="_on_name_edit_text_changed"]
+[connection signal="pressed" from="UI/RightPanel/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

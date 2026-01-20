@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://body_scene"]
+
+[ext_resource type="Script" path="res://Scripts/Body.gd" id="1_body"]
+[ext_resource type="Texture2D" uid="uid://dkrq0yv6cgnvw" path="res://Assets/body/char_a_p1_0bas_humn_v01.png" id="2_tex"]
+
+[node name="Body" type="Node2D"]
+script = ExtResource("1_body")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+hframes = 8
+vframes = 8
+frame = 0
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+offset_left = -60.0
+offset_top = 100.0
+offset_right = 60.0
+offset_bottom = 140.0
+
+[node name="CollectionButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+text = "Body"
+
+[node name="ColorButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+text = "Skin"
+
+[connection signal="pressed" from="Buttons/CollectionButton" to="." method="_on_collection_button_pressed"]
+[connection signal="pressed" from="Buttons/ColorButton" to="." method="_on_color_button_pressed"]

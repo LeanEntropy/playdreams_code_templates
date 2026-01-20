@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://accessory_scene"]
+
+[ext_resource type="Script" path="res://Scripts/Accessory.gd" id="1_accessory"]
+
+[node name="Accessory" type="Node2D"]
+script = ExtResource("1_accessory")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+hframes = 8
+vframes = 8
+frame = 0
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+offset_left = -60.0
+offset_top = 100.0
+offset_right = 60.0
+offset_bottom = 140.0
+
+[node name="CollectionButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+text = "Hat"
+
+[node name="ColorButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+text = "Color"
+
+[connection signal="pressed" from="Buttons/CollectionButton" to="." method="_on_collection_button_pressed"]
+[connection signal="pressed" from="Buttons/ColorButton" to="." method="_on_color_button_pressed"]

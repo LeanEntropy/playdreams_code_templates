@@ -1,0 +1,104 @@
+{
+  "id": "2d-character-creator-simple-movement",
+  "name": "2D Character Creator with Simple Movement",
+  "version": "1.0.0",
+  "genreIds": [
+    "casual/life-simulation",
+    "casual/social/virtual-world",
+    "casual/customization/dress-up"
+  ],
+  "keywords": [
+    "character creator",
+    "character customization",
+    "avatar creator",
+    "avatar",
+    "dress up",
+    "dress-up",
+    "customization",
+    "virtual world",
+    "life simulation",
+    "life sim",
+    "social",
+    "2d movement",
+    "top down",
+    "top-down",
+    "sprite layers",
+    "layered sprites",
+    "wardrobe",
+    "outfit",
+    "clothing",
+    "hair",
+    "accessories",
+    "skin tone",
+    "color picker",
+    "fashion",
+    "makeover",
+    "create character",
+    "custom character",
+    "rpg character",
+    "paper doll"
+  ],
+  "dimension": "2d",
+  "godotVersion": "4.5",
+  "license": "MIT",
+  "features": [
+    "layered-sprite-system",
+    "character-customization-ui",
+    "color-modulation-tinting",
+    "global-state-management",
+    "four-directional-movement",
+    "synchronized-animations",
+    "cycling-selection-pattern",
+    "live-preview-updates"
+  ],
+  "coreFiles": [
+    "Scripts/Global.gd",
+    "Scripts/Player.gd",
+    "Scripts/CharacterCreator.gd",
+    "Scripts/Body.gd",
+    "Scripts/Hair.gd",
+    "Scripts/Outfit.gd",
+    "Scripts/Accessory.gd",
+    "Scenes/CharacterCreator.tscn",
+    "Scenes/Player.tscn",
+    "Scenes/Main.tscn"
+  ],
+  "customizableAreas": [
+    {
+      "area": "customization-options",
+      "files": ["Scripts/Global.gd", "Assets/"],
+      "description": "Add new body types, hairstyles, outfits, and accessories",
+      "priority": "high"
+    },
+    {
+      "area": "color-palettes",
+      "files": ["Scripts/Global.gd"],
+      "description": "Skin tones, hair colors, outfit/accessory color options",
+      "priority": "high"
+    },
+    {
+      "area": "character-creator-ui",
+      "files": ["Scenes/CharacterCreator.tscn", "Scripts/CharacterCreator.gd"],
+      "description": "UI layout, button arrangement, preview scaling",
+      "priority": "medium"
+    },
+    {
+      "area": "movement-system",
+      "files": ["Scripts/Player.gd"],
+      "description": "Movement speed, animation timing, input handling",
+      "priority": "medium"
+    },
+    {
+      "area": "game-world",
+      "files": ["Scenes/Main.tscn", "Scripts/Main.gd"],
+      "description": "World layout, boundaries, camera zoom, environment",
+      "priority": "medium"
+    },
+    {
+      "area": "sprite-assets",
+      "files": ["Assets/body/", "Assets/hair/", "Assets/outfit/", "Assets/accessories/"],
+      "description": "Replace or add new sprite sheets (512x512, 8x8 grid)",
+      "priority": "low"
+    }
+  ]
+}
