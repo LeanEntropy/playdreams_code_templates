@@ -2,7 +2,14 @@
   "id": "tanks-3d",
   "name": "3D Tank Game",
   "version": "1.0.0",
-  "genreIds": ["mid-core/action/vehicle-combat", "mid-core/simulation/vehicle", "mid-core/action"],
+  "genreIds": [
+    "mid-core/action/vehicle-combat",
+    "mid-core/simulation/vehicle",
+    "mid-core/action",
+    "action/shooter/tank",
+    "action/combat/tank",
+    "action/vehicle"
+  ],
   "keywords": [
     "tank game",
     "3d tank",
@@ -17,7 +24,7 @@
     "tank simulator"
   ],
   "dimension": "3d",
-  "godotVersion": "4.5",
+  "godotVersion": "4.6",
   "license": "MIT",
   "features": [
     "tank-controller-with-turret-barrel",

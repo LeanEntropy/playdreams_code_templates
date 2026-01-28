@@ -16,7 +16,7 @@
     "match bubbles"
   ],
   "dimension": "2d",
-  "godotVersion": "4.5",
+  "godotVersion": "4.6",
   "license": "MIT",
   "features": [
     "hexagonal-grid-system",

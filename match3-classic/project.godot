@@ -13,7 +13,7 @@ config_version=5
 config/name="Match3 Classic"
 config/description="A clean match-3 puzzle game template with Candy Crush-style special pieces"
 run/main_scene="res://scenes/Main.tscn"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

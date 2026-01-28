@@ -5,7 +5,8 @@
   "genreIds": [
     "casual/life-simulation",
     "casual/social/virtual-world",
-    "casual/customization/dress-up"
+    "casual/customization/dress-up",
+    "casual/virtual-pet"
   ],
   "keywords": [
     "character creator",
@@ -39,7 +40,7 @@
     "paper doll"
   ],
   "dimension": "2d",
-  "godotVersion": "4.5",
+  "godotVersion": "4.6",
   "license": "MIT",
   "features": [
     "layered-sprite-system",
