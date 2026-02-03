@@ -1,0 +1,157 @@
+{
+  "version": "1.0.0",
+  "description": "Centralized index of all code templates for matching",
+  "generatedAt": "2026-02-03T12:00:00.000Z",
+  "templates": [
+    {
+      "id": "2d-flappy-bird-base",
+      "name": "2D Flappy Bird Base",
+      "dimension": "2d",
+      "genreIds": [
+        "casual/arcade/flappy",
+        "casual/arcade/endless-runner",
+        "casual/arcade",
+        "hyper-casual/tap-timing"
+      ],
+      "keywords": [
+        "flappy bird",
+        "flappy",
+        "tap to fly",
+        "tap to flap",
+        "bird game",
+        "flying bird",
+        "endless flyer",
+        "pipe obstacles",
+        "avoid obstacles",
+        "one-tap game",
+        "hyper casual",
+        "endless arcade",
+        "side scroller",
+        "scrolling obstacles"
+      ],
+      "features": [
+        "tap-to-flap-controls",
+        "gravity-physics",
+        "scrolling-environment",
+        "pipe-obstacle-spawning",
+        "collision-detection",
+        "score-tracking",
+        "game-over-restart-flow",
+        "animated-sprite-rotation"
+      ],
+      "summary": "Classic Flappy Bird-style endless arcade game with tap-to-flap controls, scrolling pipe obstacles, gravity physics, score tracking, and mobile-friendly portrait orientation."
+    },
+    {
+      "id": "tanks-3d",
+      "name": "3D Tank Game",
+      "dimension": "3d",
+      "genreIds": [
+        "mid-core/action/vehicle-combat",
+        "mid-core/simulation/vehicle",
+        "mid-core/action",
+        "action/shooter/tank",
+        "action/combat/tank",
+        "action/vehicle"
+      ],
+      "keywords": [
+        "tank game",
+        "3d tank",
+        "tank battle",
+        "tank combat",
+        "tank controls",
+        "military tank",
+        "tank turret",
+        "tank barrel",
+        "tank warfare",
+        "armored tank",
+        "tank simulator"
+      ],
+      "features": [
+        "tank-controller-with-turret-barrel",
+        "seven-player-controller-modes",
+        "three-camera-architecture",
+        "config-driven-design",
+        "component-based-shooting",
+        "fbx-mesh-workflow",
+        "modular-player-controllers",
+        "projectile-system"
+      ],
+      "summary": "3D tank combat game with realistic tank controls, turret/barrel mechanics, and 7 camera modes. Includes shooting system, projectile physics, and config-driven design."
+    },
+    {
+      "id": "bubble-shooter",
+      "name": "Bubble Shooter",
+      "dimension": "2d",
+      "genreIds": [
+        "casual/puzzle/bubble-shooter"
+      ],
+      "keywords": [
+        "bubble shooter",
+        "bubble pop",
+        "bubble game",
+        "match bubbles",
+        "aim and shoot",
+        "bubble puzzle",
+        "casual puzzle"
+      ],
+      "features": [
+        "hex-grid-system",
+        "bubble-matching",
+        "aim-trajectory",
+        "bubble-physics",
+        "score-system"
+      ],
+      "summary": "Classic bubble shooter with hex grid, aiming trajectory, bubble matching, and physics-based movement."
+    },
+    {
+      "id": "match3-classic",
+      "name": "Match-3 Classic",
+      "dimension": "2d",
+      "genreIds": [
+        "casual/puzzle/match-3"
+      ],
+      "keywords": [
+        "match 3",
+        "match-3",
+        "candy crush",
+        "gem matching",
+        "tile matching",
+        "puzzle game",
+        "swap tiles"
+      ],
+      "features": [
+        "grid-system",
+        "match-detection",
+        "cascade-system",
+        "swap-mechanics",
+        "combo-system"
+      ],
+      "summary": "Classic match-3 puzzle game with grid-based tile swapping, cascading matches, and combo mechanics."
+    },
+    {
+      "id": "2d-character-creator-simple-movement",
+      "name": "2D Character Creator with Simple Movement",
+      "dimension": "2d",
+      "genreIds": [
+        "casual/lifestyle/customization",
+        "casual/simulation/adventures-life-sim"
+      ],
+      "keywords": [
+        "character creator",
+        "character customization",
+        "avatar maker",
+        "dress up",
+        "simple movement",
+        "2d character",
+        "customization"
+      ],
+      "features": [
+        "character-customization",
+        "simple-movement",
+        "ui-panels",
+        "save-load-system"
+      ],
+      "summary": "2D character creation and customization with simple grid/area movement. Includes UI panels for customization options."
+    }
+  ]
+}

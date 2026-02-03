@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bsh80y6egouqp"]
+
+[ext_resource type="Script" uid="uid://b7n0ixh64on3y" path="res://code/environment.gd" id="1_1sr2b"]
+[ext_resource type="PackedScene" uid="uid://1pws1pbs5ubw" path="res://assets/floor_chunk/floor_chunk.tscn" id="2_1c02f"]
+[ext_resource type="Texture2D" uid="uid://cpa4xx0mcr7ep" path="res://assets/enviro/background-day.png" id="2_we176"]
+[ext_resource type="PackedScene" uid="uid://82mcrvltogdg" path="res://assets/pipe/pipe.tscn" id="4_53xpm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vkwcl"]
+
+[node name="Environment" type="Node2D" unique_id=1587695671]
+script = ExtResource("1_1sr2b")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=549629371]
+z_index = -1
+texture = ExtResource("2_we176")
+offset = Vector2(144, 256)
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=711501157]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=825216712]
+position = Vector2(0, 401)
+shape = SubResource("WorldBoundaryShape2D_vkwcl")
+
+[node name="FloorChunks" type="Node" parent="." unique_id=718791706]
+unique_name_in_owner = true
+
+[node name="FloorChunk" parent="FloorChunks" unique_id=1422928442 instance=ExtResource("2_1c02f")]
+position = Vector2(168, 456)
+
+[node name="FloorChunk2" parent="FloorChunks" unique_id=930243759 instance=ExtResource("2_1c02f")]
+position = Vector2(504, 456)
+
+[node name="Pipes" type="Node" parent="." unique_id=1712126119]
+unique_name_in_owner = true
+
+[node name="Pipe" parent="Pipes" unique_id=1336086251 instance=ExtResource("4_53xpm")]
+position = Vector2(504, 150)

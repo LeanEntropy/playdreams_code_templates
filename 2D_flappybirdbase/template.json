@@ -1,0 +1,81 @@
+{
+  "id": "2d-flappy-bird-base",
+  "name": "2D Flappy Bird Base",
+  "version": "1.0.0",
+  "genreIds": [
+    "casual/arcade/flappy",
+    "casual/arcade/endless-runner",
+    "casual/arcade",
+    "hyper-casual/tap-timing"
+  ],
+  "keywords": [
+    "flappy bird",
+    "flappy",
+    "tap to fly",
+    "tap to flap",
+    "bird game",
+    "flying bird",
+    "endless flyer",
+    "pipe obstacles",
+    "avoid obstacles",
+    "one-tap game",
+    "hyper casual",
+    "endless arcade",
+    "side scroller",
+    "scrolling obstacles",
+    "jump game",
+    "bouncing bird"
+  ],
+  "dimension": "2d",
+  "godotVersion": "4.6",
+  "license": "MIT",
+  "features": [
+    "tap-to-flap-controls",
+    "gravity-physics",
+    "scrolling-environment",
+    "pipe-obstacle-spawning",
+    "collision-detection",
+    "score-tracking",
+    "game-over-restart-flow",
+    "animated-sprite-rotation",
+    "sound-effects",
+    "mobile-portrait-orientation"
+  ],
+  "coreFiles": [
+    "code/bird.gd",
+    "code/main.gd",
+    "code/environment.gd"
+  ],
+  "customizableAreas": [
+    {
+      "area": "visual-style",
+      "files": ["assets/bird/", "assets/enviro/", "assets/pipe/", "assets/floor_chunk/"],
+      "description": "Bird sprites, background, pipe graphics, floor tiles",
+      "priority": "high"
+    },
+    {
+      "area": "game-rules",
+      "files": ["code/bird.gd", "code/environment.gd"],
+      "description": "Gravity, jump velocity, scroll speed, pipe spacing",
+      "priority": "high"
+    },
+    {
+      "area": "scoring-system",
+      "files": ["code/main.gd"],
+      "description": "Point values, digit display, score popup effects",
+      "priority": "medium"
+    },
+    {
+      "area": "ui-layout",
+      "files": ["code/main.tscn"],
+      "description": "Get ready screen, game over screen, score display",
+      "priority": "medium"
+    },
+    {
+      "area": "audio",
+      "files": ["assets/bird/", "assets/"],
+      "description": "Wing flap, point collection, death sounds",
+      "priority": "low"
+    }
+  ]
+}

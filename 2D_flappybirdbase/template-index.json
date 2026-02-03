@@ -1,0 +1,414 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-02-03T12:00:00.000Z",
+  "templateId": "2d-flappy-bird-base",
+  "summary": {
+    "totalScripts": 3,
+    "totalScenes": 5,
+    "totalFunctions": 16,
+    "totalSignals": 4,
+    "totalExports": 0
+  },
+  "scripts": [
+    {
+      "path": "code/bird.gd",
+      "className": "Bird",
+      "extends": "CharacterBody2D",
+      "functions": [
+        {
+          "name": "_unhandled_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 20,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_physics_process",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 35,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "_delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 41,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "die",
+          "params": [],
+          "returnType": "void",
+          "line": 45,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "request_start",
+          "params": [],
+          "line": 4
+        },
+        {
+          "name": "request_restart",
+          "params": [],
+          "line": 5
+        },
+        {
+          "name": "died",
+          "params": [],
+          "line": 6
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "request_start",
+          "line": 27
+        },
+        {
+          "signal": "request_restart",
+          "line": 33
+        },
+        {
+          "signal": "died",
+          "line": 49
+        }
+      ],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "AnimatedSprite2D",
+        "WingSFX",
+        "DieSFX"
+      ],
+      "preloads": [],
+      "constants": [
+        {
+          "name": "JUMP_VELOCITY",
+          "value": "300",
+          "type": "float",
+          "line": 8
+        },
+        {
+          "name": "GRAVITY",
+          "value": "1000",
+          "type": "int",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "path": "code/main.gd",
+      "className": "Main",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 28,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "on_start_requested",
+          "params": [],
+          "returnType": "void",
+          "line": 37,
+          "isPrivate": false,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "on_restart_requested",
+          "params": [],
+          "returnType": "void",
+          "line": 44,
+          "isPrivate": false,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "on_bird_died",
+          "params": [],
+          "returnType": "void",
+          "line": 49,
+          "isPrivate": false,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "on_point_acquired",
+          "params": [],
+          "returnType": "void",
+          "line": 53,
+          "isPrivate": false,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "add_digit",
+          "params": [],
+          "returnType": "void",
+          "line": 63,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "update_digits",
+          "params": [],
+          "returnType": "void",
+          "line": 72,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [
+        {
+          "signal": "request_start",
+          "target": "on_start_requested",
+          "line": 29
+        },
+        {
+          "signal": "request_restart",
+          "target": "on_restart_requested",
+          "line": 30
+        },
+        {
+          "signal": "died",
+          "target": "on_bird_died",
+          "line": 31
+        },
+        {
+          "signal": "point_acquired",
+          "target": "on_point_acquired",
+          "line": 32
+        }
+      ],
+      "nodeAccesses": [
+        "Bird",
+        "Environment",
+        "PointsDigit",
+        "SpritesAnimations",
+        "BirdAnimations",
+        "PointSFX"
+      ],
+      "preloads": [],
+      "constants": [
+        {
+          "name": "DIGIT_RECTS",
+          "value": "Dictionary",
+          "type": "Dictionary",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "code/environment.gd",
+      "className": "Enviro",
+      "extends": "Node2D",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 16,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_physics_process",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 30,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "on_floor_chunk_screen_exited",
+          "params": [],
+          "returnType": "void",
+          "line": 41,
+          "isPrivate": false,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "on_pipe_screen_exited",
+          "params": [],
+          "returnType": "void",
+          "line": 51,
+          "isPrivate": false,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "on_area_body_entered",
+          "params": [
+            {
+              "name": "body",
+              "type": "Node2D"
+            }
+          ],
+          "returnType": "void",
+          "line": 55,
+          "isPrivate": false,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "on_point_area_body_entered",
+          "params": [
+            {
+              "name": "_body",
+              "type": "Node2D"
+            }
+          ],
+          "returnType": "void",
+          "line": 62,
+          "isPrivate": false,
+          "isCallback": true,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "point_acquired",
+          "params": [],
+          "line": 4
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "point_acquired",
+          "line": 72
+        }
+      ],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "FloorChunks",
+        "Pipes"
+      ],
+      "preloads": [
+        "res://assets/floor_chunk/floor_chunk.tscn",
+        "res://assets/pipe/pipe.tscn"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "path": "code/main.tscn",
+      "rootType": "Node",
+      "rootName": "Main",
+      "signalConnections": [],
+      "instancedScenes": [
+        "res://assets/enviro/environment.tscn",
+        "res://assets/bird/bird.tscn"
+      ]
+    },
+    {
+      "path": "assets/bird/bird.tscn",
+      "rootType": "CharacterBody2D",
+      "rootName": "Bird",
+      "signalConnections": [],
+      "instancedScenes": []
+    },
+    {
+      "path": "assets/enviro/environment.tscn",
+      "rootType": "Node2D",
+      "rootName": "Environment",
+      "signalConnections": [],
+      "instancedScenes": []
+    },
+    {
+      "path": "assets/floor_chunk/floor_chunk.tscn",
+      "rootType": "Sprite2D",
+      "rootName": "FloorChunk",
+      "signalConnections": [],
+      "instancedScenes": []
+    },
+    {
+      "path": "assets/pipe/pipe.tscn",
+      "rootType": "Node2D",
+      "rootName": "Pipe",
+      "signalConnections": [],
+      "instancedScenes": []
+    }
+  ],
+  "signalFlows": [
+    {
+      "signal": "request_start",
+      "emitters": [
+        "code/bird.gd"
+      ],
+      "handlers": [
+        "code/main.gd"
+      ]
+    },
+    {
+      "signal": "request_restart",
+      "emitters": [
+        "code/bird.gd"
+      ],
+      "handlers": [
+        "code/main.gd"
+      ]
+    },
+    {
+      "signal": "died",
+      "emitters": [
+        "code/bird.gd"
+      ],
+      "handlers": [
+        "code/main.gd"
+      ]
+    },
+    {
+      "signal": "point_acquired",
+      "emitters": [
+        "code/environment.gd"
+      ],
+      "handlers": [
+        "code/main.gd"
+      ]
+    }
+  ]
+}

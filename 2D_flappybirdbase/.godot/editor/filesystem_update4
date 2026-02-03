@@ -1,0 +1,6 @@
+res://assets/bird/bird.tscn
+res://assets/enviro/environment.tscn
+res://assets/floor_chunk/floor_chunk.tscn
+res://assets/pipe/pipe.tscn
+res://code/main.tscn
+res://default_bus_layout.tres
