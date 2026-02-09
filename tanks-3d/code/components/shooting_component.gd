@@ -159,7 +159,7 @@ func get_fire_direction() -> Vector3:
 func _get_aim_target() -> Vector3:
 	var cam: Camera3D = get_viewport().get_camera_3d()
 
-	if cam and cam.name == "TankCamera":
+	if cam:
 		return AimingHelper.get_screen_center_target(cam, 1000.0, [_player])
 
 	var muzzle_pos: Vector3 = get_muzzle_position()

@@ -12,11 +12,8 @@ func _ready():
 	pause_label.hide()
 	get_tree().paused = false
 
-	var config = ConfigFile.new()
-	config.load("res://game_config.cfg")
-
-	var primary_key_str = config.get_value("controls", "pause_key_primary", "P")
-	var secondary_key_str = config.get_value("controls", "pause_key_secondary", "")
+	var primary_key_str = GameConfig.get_value("controls", "pause_key_primary", "P")
+	var secondary_key_str = GameConfig.get_value("controls", "pause_key_secondary", "")
 	pause_key_primary = OS.find_keycode_from_string(primary_key_str)
 	if secondary_key_str != "":
 		pause_key_secondary = OS.find_keycode_from_string(secondary_key_str)
