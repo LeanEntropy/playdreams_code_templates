@@ -3,14 +3,16 @@ extends CharacterBody3D
 ## Tank controller with hull movement, independent turret, terrain following,
 ## and turret-following camera. Attach directly to the Player CharacterBody3D.
 ##
-## Camera is parented to the Turret node and auto-follows turret rotation.
-## Barrel pitch is mirrored to camera pitch so the barrel tip stays at crosshair.
+## Two cameras: TankCamera (3rd person behind turret) and IsometricCamera
+## (fixed-angle overhead). Press C to switch between them.
 
 signal health_changed(current: int, max_health: int)
 
+enum CameraView { TURRET, ISOMETRIC }
+
 @export_group("Movement")
-@export var forward_speed: float = 10.0
-@export var reverse_speed: float = 4.0
+@export var forward_speed: float = 18.0
+@export var reverse_speed: float = 8.0
 @export var hull_turn_speed: float = 2.0
 @export var acceleration: float = 4.0
 @export var deceleration: float = 6.0
@@ -22,6 +24,11 @@ signal health_changed(current: int, max_health: int)
 @export var turret_rotation_speed: float = 3.0
 @export var barrel_pitch_min: float = -12.0
 @export var barrel_pitch_max: float = 30.0
+
+@export_group("Isometric Camera")
+@export var iso_height: float = 25.0
+@export var iso_distance: float = 20.0
+@export var iso_angle: float = -45.0  # Pitch in degrees
 
 @export_group("Terrain")
 @export var terrain_follow_enabled: bool = true
@@ -36,7 +43,11 @@ signal health_changed(current: int, max_health: int)
 var _turret: Node3D
 var _barrel_pivot: Node3D
 var _tank_hull: Node3D
-var _camera: Camera3D
+var _tank_camera: Camera3D
+var _iso_camera: Camera3D
+
+# Camera state
+var _active_view: CameraView = CameraView.TURRET
 
 # Turret state
 var _turret_yaw: float = 0.0
@@ -54,14 +65,20 @@ func _ready() -> void:
 	_turret = get_node_or_null("PlayerTank/Turret")
 	_barrel_pivot = get_node_or_null("PlayerTank/Turret/BarrelPivot")
 	_tank_hull = get_node_or_null("PlayerTank/TankHull")
-	_camera = get_node_or_null("PlayerTank/Turret/TankCamera") as Camera3D
+	_tank_camera = get_node_or_null("PlayerTank/Turret/TankCamera") as Camera3D
 
 	if _turret:
 		_turret_yaw = _turret.rotation.y
 		_turret_target_yaw = _turret_yaw
 
-	if _camera:
-		_camera.make_current()
+	# Create isometric camera as child of scene root (not player, so it won't rotate)
+	_iso_camera = Camera3D.new()
+	_iso_camera.name = "IsometricCamera"
+	_iso_camera.fov = 50.0
+	get_tree().root.call_deferred("add_child", _iso_camera)
+
+	if _tank_camera:
+		_tank_camera.make_current()
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -88,6 +105,11 @@ func _load_config_overrides() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Camera toggle (C key)
+	if event.is_action_pressed("switch_camera"):
+		_toggle_camera()
+		return
+
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		# Mouse X -> turret yaw target
 		_turret_target_yaw -= event.relative.x * mouse_sensitivity
@@ -101,11 +123,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			# Rotate around Z axis because barrel extends in -X direction
 			_barrel_pivot.rotation.z = -_barrel_pitch
 
-		# Camera pitch follows barrel pitch so barrel tip stays at crosshair
-		if _camera:
+		# Camera pitch follows barrel pitch (turret camera only)
+		if _tank_camera:
 			var cam_pitch: float = rad_to_deg(_barrel_pitch)
 			cam_pitch = clampf(cam_pitch, -15.0, 60.0)
-			_camera.rotation_degrees.x = cam_pitch
+			_tank_camera.rotation_degrees.x = cam_pitch
 
 	# ESC to toggle mouse capture
 	if event.is_action_pressed("ui_cancel"):
@@ -113,6 +135,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func _toggle_camera() -> void:
+	if _active_view == CameraView.TURRET:
+		_active_view = CameraView.ISOMETRIC
+		if _iso_camera:
+			_iso_camera.make_current()
+	else:
+		_active_view = CameraView.TURRET
+		if _tank_camera:
+			_tank_camera.make_current()
 
 
 func _physics_process(delta: float) -> void:
@@ -150,6 +183,9 @@ func _physics_process(delta: float) -> void:
 	# Turret rotation with speed limit
 	_update_turret(delta)
 
+	# Update isometric camera position (follows player, fixed angle)
+	_update_iso_camera()
+
 
 func _update_turret(delta: float) -> void:
 	if not _turret:
@@ -161,6 +197,16 @@ func _update_turret(delta: float) -> void:
 		_turret_yaw = _turret_target_yaw
 
 	_turret.rotation.y = _turret_yaw
+
+
+func _update_iso_camera() -> void:
+	if not _iso_camera or not is_instance_valid(_iso_camera):
+		return
+
+	# Fixed offset behind and above the player (world-space, never rotates)
+	var target_pos: Vector3 = global_position + Vector3(iso_distance, iso_height, iso_distance)
+	_iso_camera.global_position = target_pos
+	_iso_camera.look_at(global_position + Vector3(0, 1.0, 0))
 
 
 func _apply_terrain_rotation(delta: float, preserve_y: float) -> void:
