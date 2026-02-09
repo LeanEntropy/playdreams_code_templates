@@ -112,8 +112,8 @@ func _load_config_overrides() -> void:
 	reload_time = cfg.get_value("shooting", "reload_time", reload_time)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot") and _can_shoot and not _is_reloading:
+func _process(_delta: float) -> void:
+	if Input.is_action_pressed("shoot") and _can_shoot and not _is_reloading:
 		if _check_ammo():
 			_shoot()
 

@@ -29,9 +29,4 @@ shape = SubResource("SphereShape3D_1")
 mesh = SubResource("SphereMesh_1")
 surface_material_override/0 = SubResource("StandardMaterial3D_1")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(1, 0.65, 0, 1)
-light_energy = 4.0
-omni_range = 8.0
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
