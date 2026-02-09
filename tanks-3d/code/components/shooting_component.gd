@@ -197,10 +197,10 @@ func _get_aim_target() -> Vector3:
 	if cam and cam.name == "TankCamera":
 		return AimingHelper.get_screen_center_target(cam, 1000.0, [_player])
 
-	# Otherwise fire along barrel direction
+	# Otherwise fire along barrel direction (barrel extends in local -X)
 	var muzzle_pos: Vector3 = get_muzzle_position()
-	if _muzzle_marker and _barrel_pivot:
-		var barrel_dir: Vector3 = (_muzzle_marker.global_position - _barrel_pivot.global_position).normalized()
+	if _barrel_pivot:
+		var barrel_dir: Vector3 = (-_barrel_pivot.global_transform.basis.x).normalized()
 		return muzzle_pos + barrel_dir * 100.0
 
 	return muzzle_pos + Vector3.FORWARD * 100.0
