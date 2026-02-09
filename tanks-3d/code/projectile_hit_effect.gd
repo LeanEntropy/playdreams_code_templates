@@ -1,4 +1,4 @@
-extends GPUParticles3D
+extends CPUParticles3D
 class_name ProjectileHitEffect
 
 func _ready() -> void:
