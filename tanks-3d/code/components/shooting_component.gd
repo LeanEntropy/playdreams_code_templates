@@ -25,6 +25,7 @@ var _is_reloading: bool = false
 var _current_ammo: int = 10
 var _player: CharacterBody3D
 var _muzzle_marker: Node3D
+var _barrel_pivot: Node3D
 var _projectile_scene: PackedScene
 var _cooldown_timer: Timer
 
@@ -52,6 +53,7 @@ func _ready() -> void:
 	# Wait a frame for sibling nodes to be ready
 	await get_tree().process_frame
 
+	_barrel_pivot = _player.get_node_or_null("PlayerTank/Turret/BarrelPivot")
 	_setup_barrel_muzzle()
 	_load_config_overrides()
 
@@ -189,9 +191,16 @@ func get_fire_direction() -> Vector3:
 
 
 func _get_aim_target() -> Vector3:
-	# Use whatever camera is currently active in the viewport
 	var cam: Camera3D = get_viewport().get_camera_3d()
-	if not cam:
-		return get_muzzle_position() + Vector3.FORWARD * 100.0
 
-	return AimingHelper.get_screen_center_target(cam, 1000.0, [_player])
+	# In turret cam, raycast from screen center (crosshair aiming)
+	if cam and cam.name == "TankCamera":
+		return AimingHelper.get_screen_center_target(cam, 1000.0, [_player])
+
+	# Otherwise fire along barrel direction
+	var muzzle_pos: Vector3 = get_muzzle_position()
+	if _muzzle_marker and _barrel_pivot:
+		var barrel_dir: Vector3 = (_muzzle_marker.global_position - _barrel_pivot.global_position).normalized()
+		return muzzle_pos + barrel_dir * 100.0
+
+	return muzzle_pos + Vector3.FORWARD * 100.0

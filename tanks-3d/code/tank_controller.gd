@@ -45,6 +45,7 @@ var _barrel_pivot: Node3D
 var _tank_hull: Node3D
 var _tank_camera: Camera3D
 var _iso_camera: Camera3D
+var _crosshair: Control
 
 # Camera state
 var _active_view: CameraView = CameraView.TURRET
@@ -84,6 +85,9 @@ func _ready() -> void:
 
 	_current_health = max_health
 	_load_config_overrides()
+
+	# Find crosshair (deferred so UILayer is ready)
+	call_deferred("_find_crosshair")
 
 
 func _load_config_overrides() -> void:
@@ -137,15 +141,25 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
+func _find_crosshair() -> void:
+	var ui_layer: Node = get_parent().get_node_or_null("UILayer")
+	if ui_layer:
+		_crosshair = ui_layer.get_node_or_null("Crosshair") as Control
+
+
 func _toggle_camera() -> void:
 	if _active_view == CameraView.TURRET:
 		_active_view = CameraView.ISOMETRIC
 		if _iso_camera:
 			_iso_camera.make_current()
+		if _crosshair:
+			_crosshair.visible = false
 	else:
 		_active_view = CameraView.TURRET
 		if _tank_camera:
 			_tank_camera.make_current()
+		if _crosshair:
+			_crosshair.visible = true
 
 
 func _physics_process(delta: float) -> void:
