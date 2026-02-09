@@ -1,0 +1,196 @@
+{
+  "version": "3.0.0",
+  "description": "API documentation for the 3D tank combat template",
+  "autoloads": {
+    "GameConfig": {
+      "path": "res://code/game_config.gd",
+      "description": "Minimal configuration accessor that loads values from game_config.cfg. Available as global singleton.",
+      "usage": "GameConfig.get_value(section, key, default)",
+      "signals": [
+        {
+          "name": "config_loaded",
+          "description": "Emitted when configuration file has been loaded"
+        }
+      ],
+      "methods": [
+        {
+          "name": "get_value",
+          "signature": "get_value(section: String, key: String, default = null) -> Variant",
+          "description": "Get a value from the config file by section and key"
+        }
+      ],
+      "properties": [
+        { "name": "is_loaded", "type": "bool", "description": "True when config file has been loaded" },
+        { "name": "config", "type": "ConfigFile", "description": "The underlying ConfigFile instance" }
+      ]
+    }
+  },
+  "globalClasses": {
+    "Log": {
+      "path": "res://code/logger.gd",
+      "description": "Static logging utility. Use directly via class name (NOT an autoload).",
+      "usage": "Log.info(message), Log.error(message), Log.warning(message)",
+      "note": "This is a class_name, not an autoload. All methods are static - call directly on Log class.",
+      "methods": [
+        {
+          "name": "info",
+          "signature": "static func info(message: String) -> void",
+          "description": "Log an info message"
+        },
+        {
+          "name": "warning",
+          "signature": "static func warning(message: String) -> void",
+          "description": "Log a warning message (yellow)"
+        },
+        {
+          "name": "error",
+          "signature": "static func error(message: String) -> void",
+          "description": "Log an error message to stderr"
+        },
+        {
+          "name": "performance",
+          "signature": "static func performance(message: String) -> void",
+          "description": "Log a performance message (cyan)"
+        },
+        {
+          "name": "start_performance_check",
+          "signature": "static func start_performance_check(check_name: String) -> void",
+          "description": "Start timing a named performance check"
+        },
+        {
+          "name": "end_performance_check",
+          "signature": "static func end_performance_check(check_name: String) -> void",
+          "description": "End timing and log the duration"
+        }
+      ]
+    },
+    "CameraRig": {
+      "path": "res://code/components/camera_rig.gd",
+      "description": "Camera management component with three modes: Chase, TopDown, Free. Owns mouse mode.",
+      "usage": "Access via node: get_node('CameraRig')",
+      "enums": [
+        {
+          "name": "CameraMode",
+          "values": ["CHASE", "TOP_DOWN", "FREE"]
+        }
+      ],
+      "signals": [
+        {
+          "name": "camera_mode_changed",
+          "signature": "camera_mode_changed(new_mode: CameraMode)",
+          "description": "Emitted when camera mode changes (C key or switch_mode call)"
+        }
+      ],
+      "methods": [
+        {
+          "name": "switch_mode",
+          "signature": "func switch_mode(mode: CameraMode) -> void",
+          "description": "Activate a camera mode and set appropriate mouse mode"
+        },
+        {
+          "name": "get_active_camera",
+          "signature": "func get_active_camera() -> Camera3D",
+          "description": "Returns the currently active Camera3D"
+        },
+        {
+          "name": "get_current_mode",
+          "signature": "func get_current_mode() -> CameraMode",
+          "description": "Returns the current camera mode enum value"
+        },
+        {
+          "name": "set_chase_yaw",
+          "signature": "func set_chase_yaw(yaw: float) -> void",
+          "description": "Called by tank controller to sync chase camera with turret rotation"
+        },
+        {
+          "name": "apply_camera_kick",
+          "signature": "func apply_camera_kick(pitch_degrees: float) -> void",
+          "description": "Called by ShootingFeedback to add recoil kick to chase camera"
+        }
+      ]
+    },
+    "ShootingComponent": {
+      "path": "res://code/components/shooting_component.gd",
+      "description": "Tank shooting system with barrel detection, CameraRig-aware aiming, and Timer-based cooldown.",
+      "signals": [
+        {
+          "name": "shot_fired",
+          "description": "Emitted when a projectile is fired"
+        },
+        {
+          "name": "ammo_changed",
+          "signature": "ammo_changed(current: int, max_ammo: int)",
+          "description": "Emitted when ammo count changes (fire or reload)"
+        }
+      ],
+      "methods": [
+        {
+          "name": "get_muzzle_position",
+          "signature": "func get_muzzle_position() -> Vector3",
+          "description": "Returns the barrel tip world position"
+        },
+        {
+          "name": "get_fire_direction",
+          "signature": "func get_fire_direction() -> Vector3",
+          "description": "Returns normalized direction from muzzle to aim target"
+        },
+        {
+          "name": "reload",
+          "signature": "func reload() -> void",
+          "description": "Manually trigger a reload"
+        }
+      ]
+    },
+    "ShootingFeedback": {
+      "path": "res://code/components/shooting_feedback.gd",
+      "description": "Subscribes to ShootingComponent.shot_fired for camera kick, screen shake, muzzle flash, and barrel recoil. All config-driven."
+    },
+    "AimingHelper": {
+      "path": "res://code/components/aiming_helper.gd",
+      "description": "Static utility class for aim raycasts.",
+      "usage": "AimingHelper.get_screen_center_target(camera, distance, exclude)",
+      "methods": [
+        {
+          "name": "get_screen_center_target",
+          "signature": "static func get_screen_center_target(camera: Camera3D, max_distance: float, exclude_bodies: Array = []) -> Vector3",
+          "description": "Raycast from screen center into the scene"
+        },
+        {
+          "name": "get_mouse_ground_target",
+          "signature": "static func get_mouse_ground_target(camera: Camera3D, mouse_position: Vector2, ground_y: float = 0.0, exclude_bodies: Array = []) -> Vector3",
+          "description": "Raycast from mouse position to ground plane"
+        },
+        {
+          "name": "calculate_fire_direction",
+          "signature": "static func calculate_fire_direction(muzzle_position: Vector3, target_position: Vector3) -> Vector3",
+          "description": "Calculate normalized direction from muzzle to target"
+        },
+        {
+          "name": "has_clear_line_of_sight",
+          "signature": "static func has_clear_line_of_sight(from_position: Vector3, to_position: Vector3, world_3d: World3D, exclude_bodies: Array = []) -> bool",
+          "description": "Check if there is a clear line of sight between two positions"
+        }
+      ]
+    },
+    "TankProjectile": {
+      "path": "res://code/tank_projectile.gd",
+      "description": "RigidBody3D projectile with configurable color, gravity, and hit effects.",
+      "methods": [
+        {
+          "name": "launch",
+          "signature": "func launch(launch_direction: Vector3, launch_speed: float = 30.0, launch_gravity_scale: float = 0.15) -> void",
+          "description": "Launch projectile in a direction with speed and gravity"
+        }
+      ]
+    }
+  },
+  "warnings": [
+    "Do NOT create a new class_name Log - it already exists in logger.gd",
+    "Do NOT add Log as an autoload - it uses static methods via class_name",
+    "Always use Log.info(), Log.error(), Log.warning() for logging",
+    "Wait for GameConfig.config_loaded signal or check GameConfig.is_loaded before accessing config values",
+    "CameraRig owns mouse mode - do not call Input.set_mouse_mode() elsewhere",
+    "Use @export with @export_group for configurable values, not hardcoded constants",
+    "Use CPUParticles3D (not GPUParticles3D) for web Compatibility renderer support"
+  ]
+}

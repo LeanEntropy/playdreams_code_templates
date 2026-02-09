@@ -1,12 +1,11 @@
-[gd_scene load_steps=34 format=4 uid="uid://bnkcsqjtokxh6"]
+[gd_scene format=4 uid="uid://bnkcsqjtokxh6"]
 
-[ext_resource type="Script" uid="uid://b0ybpsvtdt3ue" path="res://code/main.gd" id="0_main"]
-[ext_resource type="Script" uid="uid://cknif7bnpg03r" path="res://code/player_controller.gd" id="1_dax7f"]
+[ext_resource type="Script" uid="uid://yvkfndda33i0" path="res://code/main.gd" id="0_main"]
+[ext_resource type="Script" uid="uid://bmr2s34shg8fw" path="res://code/tank_controller.gd" id="1_tank"]
 [ext_resource type="PackedScene" uid="uid://c6a8g6f8v8x8w" path="res://assets/UI/ui_layer.tscn" id="2_abcde"]
-[ext_resource type="PackedScene" uid="uid://b1h2w3x4y506" path="res://assets/red_box.tscn" id="3_defgh"]
-[ext_resource type="Script" uid="uid://cwqpmt7podyst" path="res://code/components/shooting_component.gd" id="4_shooting"]
-[ext_resource type="Script" uid="uid://dtiaujqfhaeas" path="res://code/components/weapon_component.gd" id="5_weapon"]
-[ext_resource type="PackedScene" path="res://assets/UI/title_screen.tscn" id="6_title"]
+[ext_resource type="Script" uid="uid://dkgvafjpmcaxo" path="res://code/components/shooting_component.gd" id="4_shooting"]
+[ext_resource type="Script" uid="uid://cb4co4jc8ypi" path="res://code/components/shooting_feedback.gd" id="6_feedback"]
+[ext_resource type="PackedScene" uid="uid://bkr3y8h5qnx2d" path="res://assets/UI/title_screen.tscn" id="7_title"]
 
 [sub_resource type="ProceduralSkyMaterial" id="6"]
 sky_top_color = Color(0.317647, 0.705882, 0.94902, 1)
@@ -33,20 +32,6 @@ size = Vector3(1000, 2, 1000)
 [sub_resource type="CapsuleShape3D" id="7"]
 radius = 0.6
 height = 1.2
-
-[sub_resource type="CapsuleMesh" id="8"]
-
-[sub_resource type="StandardMaterial3D" id="9"]
-
-[sub_resource type="CylinderMesh" id="10"]
-top_radius = 0.7
-bottom_radius = 0.7
-height = 0.05
-
-[sub_resource type="StandardMaterial3D" id="11"]
-albedo_color = Color(0, 1, 0, 1)
-emission_enabled = true
-emission = Color(0, 1, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ay74"]
 resource_name = "Main_Details"
@@ -735,63 +720,67 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pykhu")
 
-[node name="Main" type="Node3D"]
+[sub_resource type="BoxMesh" id="DebugBoxMesh"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="DebugRedMat"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="DebugBlueMat"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="DebugGreenMat"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="DebugYellowMat"]
+albedo_color = Color(1, 1, 0, 1)
+
+[node name="Main" type="Node3D" unique_id=141891568]
 script = ExtResource("0_main")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1651260691]
 environment = SubResource("5")
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1747565259]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029052, 0)
 
-[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(2.08687, 0, 0, 0, 2.08687, 0, 0, 0, 2.08687, 4.90941, 1.09819, 3.29891)
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor" unique_id=233488791]
+transform = Transform3D(2.08687, 0, 0, 0, 2.08687, 0, 0, 0, 2.08687, 4.908779, 1.0803782, 3.297014)
 material_override = SubResource("3")
 mesh = SubResource("1")
 
-[node name="FloorCollision" type="CollisionShape3D" parent="Floor"]
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor" unique_id=1089173384]
 shape = SubResource("2")
 debug_color = Color(0.815435, 0.00196296, 0.975803, 0.42)
 
-[node name="SunLight" type="DirectionalLight3D" parent="."]
+[node name="SunLight" type="DirectionalLight3D" parent="." unique_id=1344299719]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 0)
 shadow_enabled = true
 
-[node name="OverheadLight" type="SpotLight3D" parent="."]
+[node name="OverheadLight" type="SpotLight3D" parent="." unique_id=196254103]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 192.266, 0)
 light_energy = 3.0
 light_size = 1.0
 shadow_enabled = true
 spot_range = 275.757
 
-[node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=401536479 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08931, 0)
-script = ExtResource("1_dax7f")
+script = ExtResource("1_tank")
 
-[node name="PlayerCollision" type="CollisionShape3D" parent="Player"]
+[node name="PlayerCollision" type="CollisionShape3D" parent="Player" unique_id=1199611070]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 shape = SubResource("7")
 
-[node name="PlayerMesh" type="MeshInstance3D" parent="Player"]
-visible = false
-mesh = SubResource("8")
-surface_material_override/0 = SubResource("9")
+[node name="PlayerTank" type="Node3D" parent="Player" unique_id=1484405391]
 
-[node name="SelectionRing" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
-visible = false
-mesh = SubResource("10")
-surface_material_override/0 = SubResource("11")
-
-[node name="PlayerTank" type="Node3D" parent="Player"]
-
-[node name="TankHull" type="Node3D" parent="Player/PlayerTank"]
+[node name="TankHull" type="Node3D" parent="Player/PlayerTank" unique_id=1547772163]
 transform = Transform3D(-1.09278e-06, 0, -25, 0, 25, 0, 25, 0, -1.09278e-06, 0, 0, 0)
 
-[node name="TankArmature" type="Node3D" parent="Player/PlayerTank/TankHull"]
+[node name="TankArmature" type="Node3D" parent="Player/PlayerTank/TankHull" unique_id=674737905]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Player/PlayerTank/TankHull/TankArmature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Player/PlayerTank/TankHull/TankArmature" unique_id=129275408]
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, 0.0393123, -0.013019)
@@ -1416,46 +1405,65 @@ bones/88/position = Vector3(0, 0.01, 0)
 bones/88/rotation = Quaternion(0, 0, 0, 1)
 bones/88/scale = Vector3(1, 1, 1)
 
-[node name="Tank_body" type="MeshInstance3D" parent="Player/PlayerTank/TankHull/TankArmature/Skeleton3D"]
+[node name="Tank_body" type="MeshInstance3D" parent="Player/PlayerTank/TankHull/TankArmature/Skeleton3D" unique_id=516178867]
 mesh = SubResource("ArrayMesh_keod1")
 skin = SubResource("Skin_jcyqx")
 
-[node name="TrackMesh_R" type="MeshInstance3D" parent="Player/PlayerTank/TankHull/TankArmature/Skeleton3D"]
+[node name="TrackMesh_R" type="MeshInstance3D" parent="Player/PlayerTank/TankHull/TankArmature/Skeleton3D" unique_id=1307837516]
+transform = Transform3D(1, -7.1054274e-15, -4.2351647e-22, 7.1054274e-15, 1, -7.1054274e-15, -4.2351647e-22, 7.1054274e-15, 1, 1.7993472e-09, -0.041164435, 0)
 mesh = SubResource("ArrayMesh_8618d")
 skin = SubResource("Skin_xjg5i")
 
-[node name="TrackMesh_L" type="MeshInstance3D" parent="Player/PlayerTank/TankHull/TankArmature/Skeleton3D"]
+[node name="TrackMesh_L" type="MeshInstance3D" parent="Player/PlayerTank/TankHull/TankArmature/Skeleton3D" unique_id=1873595060]
+transform = Transform3D(1, -3.5527137e-15, -2.1175824e-22, 3.5527137e-15, 1, -3.5527137e-15, -2.1175824e-22, 3.5527137e-15, 1, -1.7242293e-09, 0.039445933, 0)
 mesh = SubResource("ArrayMesh_bq23c")
 skin = SubResource("Skin_b1vcr")
 
-[node name="Turret" type="Node3D" parent="Player/PlayerTank"]
-transform = Transform3D(-1.09278e-06, 0, -25, 0, 25, 0, 25, 0, -1.09278e-06, 0, 0.4, 0)
+[node name="Turret" type="Node3D" parent="Player/PlayerTank" unique_id=1040630241]
+transform = Transform3D(-1.09278e-06, 0, -25, 0, 25, 0, 25, 0, -1.09278e-06, 0, 0.52415967, 0)
 
-[node name="TankCamera" type="Camera3D" parent="Player/PlayerTank/Turret"]
+[node name="TankCamera" type="Camera3D" parent="Player/PlayerTank/Turret" unique_id=2049502445]
 transform = Transform3D(-1.74846e-09, -0.0118283, 0.0382111, 0, 0.0382111, 0.0118283, -0.04, 5.17034e-10, -1.67027e-09, 0.160438, 0.0387447, 0.00258549)
 current = true
 
-[node name="BarrelPivot" type="Node3D" parent="Player/PlayerTank/Turret"]
+[node name="BarrelPivot" type="Node3D" parent="Player/PlayerTank/Turret" unique_id=852172866]
 
-[node name="TankGunBarrel" type="MeshInstance3D" parent="Player/PlayerTank/Turret/BarrelPivot"]
+[node name="TankGunBarrel" type="MeshInstance3D" parent="Player/PlayerTank/Turret/BarrelPivot" unique_id=1011040347]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_af6xl")
-skeleton = NodePath("")
 
-[node name="TurretMesh" type="MeshInstance3D" parent="Player/PlayerTank/Turret"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+[node name="TurretMesh" type="MeshInstance3D" parent="Player/PlayerTank/Turret" unique_id=203725693]
+transform = Transform3D(1, -3.5527137e-15, 0, 0, -4.3711395e-08, 1, -3.5527137e-15, -1, -4.3711395e-08, 0, 0.0011001229, 0)
 mesh = SubResource("ArrayMesh_aqxwa")
-skeleton = NodePath("")
 
-[node name="ShootingComponent" type="Node" parent="Player"]
+[node name="ShootingComponent" type="Node" parent="Player" unique_id=1483009528]
 script = ExtResource("4_shooting")
 
-[node name="WeaponComponent" type="Node3D" parent="Player"]
-script = ExtResource("5_weapon")
+[node name="ShootingFeedback" type="Node" parent="Player" unique_id=912492597]
+script = ExtResource("6_feedback")
 
-[node name="RedBox" parent="." instance=ExtResource("3_defgh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01169, -9.10316)
+[node name="UILayer" parent="." unique_id=1068753077 instance=ExtResource("2_abcde")]
 
-[node name="UILayer" parent="." instance=ExtResource("2_abcde")]
+[node name="TitleScreen" parent="." unique_id=1783546281 instance=ExtResource("7_title")]
 
-[node name="TitleScreen" parent="." instance=ExtResource("6_title")]
+[node name="DebugCubes" type="Node3D" parent="." unique_id=1861922354]
+
+[node name="RedCube_North" type="MeshInstance3D" parent="DebugCubes" unique_id=1749908992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -20)
+mesh = SubResource("DebugBoxMesh")
+surface_material_override/0 = SubResource("DebugRedMat")
+
+[node name="BlueCube_East" type="MeshInstance3D" parent="DebugCubes" unique_id=1140637106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 0)
+mesh = SubResource("DebugBoxMesh")
+surface_material_override/0 = SubResource("DebugBlueMat")
+
+[node name="GreenCube_South" type="MeshInstance3D" parent="DebugCubes" unique_id=686122014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20)
+mesh = SubResource("DebugBoxMesh")
+surface_material_override/0 = SubResource("DebugGreenMat")
+
+[node name="YellowCube_West" type="MeshInstance3D" parent="DebugCubes" unique_id=768581069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 0)
+mesh = SubResource("DebugBoxMesh")
+surface_material_override/0 = SubResource("DebugYellowMat")

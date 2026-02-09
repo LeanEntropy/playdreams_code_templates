@@ -28,53 +28,43 @@
   "license": "MIT",
   "features": [
     "tank-controller-with-turret-barrel",
-    "seven-player-controller-modes",
-    "three-camera-architecture",
+    "camera-rig-three-modes",
     "config-driven-design",
     "component-based-shooting",
     "fbx-mesh-workflow",
-    "modular-player-controllers",
     "projectile-system"
   ],
   "coreFiles": [
-    "code/player_controllers/tank_controller.gd",
-    "code/player_controller.gd",
+    "code/tank_controller.gd",
     "code/game_config.gd",
-    "code/shooting_manager.gd",
     "code/components/shooting_component.gd",
-    "code/components/weapon_component.gd",
+    "code/components/camera_rig.gd",
     "code/main.gd",
     "game_config.cfg"
   ],
   "customizableAreas": [
     {
       "area": "tank-controls",
-      "files": ["game_config.cfg", "code/player_controllers/tank_controller.gd"],
+      "files": ["game_config.cfg", "code/tank_controller.gd"],
       "description": "Tank movement speed, turret rotation, barrel pitch, mouse sensitivity",
       "priority": "high"
     },
     {
-      "area": "controller-modes",
-      "files": ["game_config.cfg", "code/player_controllers/"],
-      "description": "Switch between 7 controller modes: tank, first_person, third_person, over_the_shoulder, top_down, isometric, free_camera",
+      "area": "shooting-system",
+      "files": ["game_config.cfg", "code/components/shooting_component.gd"],
+      "description": "Fire rate, projectile speed, damage settings",
       "priority": "high"
     },
     {
-      "area": "shooting-system",
-      "files": ["game_config.cfg", "code/shooting_manager.gd", "code/components/shooting_component.gd"],
-      "description": "Fire rate, projectile speed, damage, ammo settings",
+      "area": "camera-modes",
+      "files": ["game_config.cfg", "code/components/camera_rig.gd"],
+      "description": "Chase, top-down, and free camera modes with configurable parameters",
       "priority": "high"
     },
     {
       "area": "visual-style",
       "files": ["assets/", "assets/3d_models/tanks/", "assets/UI/"],
-      "description": "Tank models, weapon models, UI elements, crosshair",
-      "priority": "medium"
-    },
-    {
-      "area": "camera-settings",
-      "files": ["game_config.cfg"],
-      "description": "Camera distance, height, FOV for each controller mode",
+      "description": "Tank models, UI elements, crosshair",
       "priority": "medium"
     },
     {

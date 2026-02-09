@@ -1,0 +1,6337 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-01-25T13:46:49.012Z",
+  "templateId": "tanks-3d",
+  "summary": {
+    "totalScripts": 45,
+    "totalScenes": 16,
+    "totalFunctions": 355,
+    "totalSignals": 30,
+    "totalExports": 21
+  },
+  "scripts": [
+    {
+      "path": "addons/music_manager/music_bank.gd",
+      "className": "MusicBank",
+      "extends": "Node",
+      "functions": [],
+      "signals": [],
+      "exports": [
+        {
+          "name": "label",
+          "type": "String",
+          "line": 7
+        },
+        {
+          "name": "bus",
+          "type": "String",
+          "line": 11
+        },
+        {
+          "name": "mode",
+          "type": "Node",
+          "line": 14
+        },
+        {
+          "name": "tracks",
+          "type": "Array",
+          "line": 17
+        }
+      ],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "27db77b0bf7d0823985df7df9d197a56",
+      "lastModified": 1757939318844.0422
+    },
+    {
+      "path": "addons/music_manager/music_manager.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "_init",
+          "params": [],
+          "line": 41,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 45,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "_p_delta"
+            }
+          ],
+          "returnType": "void",
+          "line": 53,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "play",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_track_name",
+              "type": "String"
+            },
+            {
+              "name": "p_crossfade_time",
+              "type": "float",
+              "default": "5.0"
+            },
+            {
+              "name": "p_auto_loop",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "bool",
+          "line": 76,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "is_playing",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String",
+              "default": "\"\""
+            },
+            {
+              "name": "p_track_name",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "bool",
+          "line": 127,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "stop",
+          "params": [
+            {
+              "name": "p_fade_time",
+              "type": "float",
+              "default": "5.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 152,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "should_skip_playing",
+          "params": [
+            {
+              "name": "p_flag"
+            }
+          ],
+          "returnType": "bool",
+          "line": 164,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "set_volume",
+          "params": [
+            {
+              "name": "p_volume",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 169,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "enable_stem",
+          "params": [
+            {
+              "name": "p_name",
+              "type": "String"
+            },
+            {
+              "name": "p_fade_time",
+              "type": "float",
+              "default": "2.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 181,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "disable_stem",
+          "params": [
+            {
+              "name": "p_name",
+              "type": "String"
+            },
+            {
+              "name": "p_fade_time",
+              "type": "float",
+              "default": "2.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 186,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "set_stem_volume",
+          "params": [
+            {
+              "name": "p_name",
+              "type": "String"
+            },
+            {
+              "name": "p_volume",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 191,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "get_stem_details",
+          "params": [
+            {
+              "name": "p_name",
+              "type": "String"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 202,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "stop_on_exit",
+          "params": [
+            {
+              "name": "p_base",
+              "type": "Node"
+            },
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_track_name",
+              "type": "String"
+            },
+            {
+              "name": "p_fade_time",
+              "type": "float",
+              "default": "5.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 214,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "auto_stop",
+          "params": [
+            {
+              "name": "p_base",
+              "type": "Node"
+            },
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_track_name",
+              "type": "String"
+            },
+            {
+              "name": "p_fade_time",
+              "type": "float",
+              "default": "5.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 222,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "add_bank",
+          "params": [
+            {
+              "name": "p_bank",
+              "type": "MusicBank"
+            }
+          ],
+          "returnType": "void",
+          "line": 228,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "remove_bank",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 233,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "clear_banks",
+          "params": [],
+          "returnType": "void",
+          "line": 241,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_scene_node_added",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 250,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_scene_node_removed",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 257,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_auto_add_music",
+          "params": [],
+          "returnType": "void",
+          "line": 264,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_add_bank",
+          "params": [
+            {
+              "name": "p_bank",
+              "type": "MusicBank"
+            }
+          ],
+          "returnType": "void",
+          "line": 273,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_remove_bank",
+          "params": [
+            {
+              "name": "p_bank",
+              "type": "MusicBank"
+            }
+          ],
+          "returnType": "void",
+          "line": 289,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_create_tracks",
+          "params": [
+            {
+              "name": "p_tracks",
+              "type": "Array"
+            }
+          ],
+          "returnType": "Dictionary",
+          "line": 301,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_create_stems",
+          "params": [
+            {
+              "name": "p_stems",
+              "type": "Array"
+            }
+          ],
+          "returnType": "Array",
+          "line": 314,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_get_bus",
+          "params": [
+            {
+              "name": "p_bank_bus",
+              "type": "String"
+            },
+            {
+              "name": "p_track_bus",
+              "type": "String"
+            }
+          ],
+          "returnType": "String",
+          "line": 328,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_is_playing_music",
+          "params": [],
+          "returnType": "bool",
+          "line": 340,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_get_current_player",
+          "params": [],
+          "returnType": "StemmedMusicStreamPlayer",
+          "line": 344,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_set_stem",
+          "params": [
+            {
+              "name": "p_name",
+              "type": "String"
+            },
+            {
+              "name": "p_enabled",
+              "type": "bool"
+            },
+            {
+              "name": "p_fade_time",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 351,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_music_player_exiting",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_track_name",
+              "type": "String"
+            },
+            {
+              "name": "p_fade_time",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 361,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_player_stopped",
+          "params": [
+            {
+              "name": "p_player",
+              "type": "StemmedMusicStreamPlayer"
+            }
+          ],
+          "returnType": "void",
+          "line": 368,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_auto_loop_completed",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_track_name",
+              "type": "String"
+            },
+            {
+              "name": "p_crossfade_time",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 376,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "loaded",
+          "line": 16
+        },
+        {
+          "name": "banks_updated",
+          "line": 20
+        },
+        {
+          "name": "MusicManager",
+          "line": 22
+        },
+        {
+          "name": "MusicManager",
+          "line": 23
+        },
+        {
+          "name": "updated",
+          "line": 24
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "banks_updated",
+          "line": 56
+        },
+        {
+          "signal": "updated",
+          "line": 57
+        },
+        {
+          "signal": "loaded",
+          "line": 63
+        },
+        {
+          "signal": "updated",
+          "line": 64
+        }
+      ],
+      "connectsSignals": [
+        {
+          "signal": "_on_auto_loop_completed",
+          "handler": "CONNECT_REFERENCE_COUNTED",
+          "line": 120
+        }
+      ],
+      "nodeAccesses": [],
+      "preloads": [
+        "../shared/resonate_settings.gd"
+      ],
+      "checksum": "8e85a27b1e44681bf61894744f04a716",
+      "lastModified": 1757939318909.0403
+    },
+    {
+      "path": "addons/music_manager/music_stem_resource.gd",
+      "className": "MusicStemResource",
+      "extends": "Resource",
+      "functions": [],
+      "signals": [],
+      "exports": [
+        {
+          "name": "name",
+          "type": "String",
+          "default": "\"\"",
+          "line": 7
+        },
+        {
+          "name": "enabled",
+          "type": "bool",
+          "default": "false",
+          "line": 10
+        },
+        {
+          "name": "stream",
+          "type": "AudioStream",
+          "line": 16
+        }
+      ],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "4c6468e0f110292f885f5cf93ba16049",
+      "lastModified": 1757939318881.0442
+    },
+    {
+      "path": "addons/music_manager/music_track_resource.gd",
+      "className": "MusicTrackResource",
+      "extends": "Resource",
+      "functions": [],
+      "signals": [],
+      "exports": [
+        {
+          "name": "name",
+          "type": "String",
+          "default": "\"\"",
+          "line": 7
+        },
+        {
+          "name": "bus",
+          "type": "String",
+          "default": "\"\"",
+          "line": 11
+        },
+        {
+          "name": "stems",
+          "type": "Array",
+          "line": 14
+        }
+      ],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "7316520c09cd40a577d8926e50dc0ec4",
+      "lastModified": 1757939318872.041
+    },
+    {
+      "path": "addons/music_manager/stemmed_music_stream_player.gd",
+      "className": "StemmedMusicStreamPlayer",
+      "extends": "AudioStreamPlayer",
+      "functions": [
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "p_delta"
+            }
+          ],
+          "line": 43,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "create",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_track_name",
+              "type": "String"
+            },
+            {
+              "name": "p_bus",
+              "type": "String"
+            },
+            {
+              "name": "p_mode",
+              "type": "Node"
+            },
+            {
+              "name": "p_max_volume",
+              "type": "float"
+            },
+            {
+              "name": "p_auto_loop",
+              "type": "bool"
+            }
+          ],
+          "returnType": "StemmedMusicStreamPlayer",
+          "line": 65,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "start_stems",
+          "params": [
+            {
+              "name": "p_stems",
+              "type": "Array"
+            },
+            {
+              "name": "p_crossfade_time",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 85,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "toggle_stem",
+          "params": [
+            {
+              "name": "p_name",
+              "type": "String"
+            },
+            {
+              "name": "p_enabled",
+              "type": "bool"
+            },
+            {
+              "name": "p_fade_time",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 129,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "set_volume",
+          "params": [
+            {
+              "name": "p_volume",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 158,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "set_stem_volume",
+          "params": [
+            {
+              "name": "p_name",
+              "type": "String"
+            },
+            {
+              "name": "p_volume",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 169,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "stop_stems",
+          "params": [
+            {
+              "name": "p_fade_time",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 183,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "get_stem_details",
+          "params": [
+            {
+              "name": "p_name",
+              "type": "String"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 199,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_tween_stem_volume",
+          "params": [
+            {
+              "name": "p_target_volume",
+              "type": "float"
+            },
+            {
+              "name": "p_name",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 218,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_stop_stems_tween_finished",
+          "params": [],
+          "returnType": "void",
+          "line": 227,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "stopped",
+          "line": 8
+        },
+        {
+          "name": "auto_loop_completed",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_track_name",
+              "type": "String"
+            },
+            {
+              "name": "p_crossfade_time",
+              "type": "float"
+            }
+          ],
+          "line": 11
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "auto_loop_completed",
+          "line": 55
+        },
+        {
+          "signal": "stopped",
+          "line": 228
+        }
+      ],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "adaeb6bfc8cc2821049d13f02aaf9173",
+      "lastModified": 1757939318895.0413
+    },
+    {
+      "path": "addons/plugin.gd",
+      "extends": "EditorPlugin",
+      "functions": [
+        {
+          "name": "_enter_tree",
+          "params": [],
+          "line": 9,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_exit_tree",
+          "params": [],
+          "line": 54,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "add_project_setting",
+          "params": [
+            {
+              "name": "p_name",
+              "type": "String"
+            },
+            {
+              "name": "p_default"
+            },
+            {
+              "name": "p_actual"
+            },
+            {
+              "name": "p_type",
+              "type": "int"
+            },
+            {
+              "name": "p_hint",
+              "type": "int",
+              "default": "PROPERTY_HINT_NONE"
+            },
+            {
+              "name": "p_hint_string",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "line": 61,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "migrate_old_bus_settings",
+          "params": [],
+          "line": 82,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [
+        "shared/resonate_settings.gd",
+        "sound_manager/sound_bank.gd",
+        "sound_manager/sound_bank.svg",
+        "music_manager/music_bank.gd",
+        "music_manager/music_bank.svg"
+      ],
+      "checksum": "2981de51d745ea0380f4d5a9cf64c374",
+      "lastModified": 1757939318620.4175
+    },
+    {
+      "path": "addons/shared/resonate_settings.gd",
+      "extends": "RefCounted",
+      "functions": [],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "ccc254edf5a621ac99b4fb9fa61efd43",
+      "lastModified": 1757939318685.4172
+    },
+    {
+      "path": "addons/shared/resonate_utils.gd",
+      "className": "ResonateUtils",
+      "extends": "RefCounted",
+      "functions": [
+        {
+          "name": "is_stream_looped",
+          "params": [
+            {
+              "name": "p_stream"
+            }
+          ],
+          "returnType": "bool",
+          "line": 5,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "find_all_nodes",
+          "params": [
+            {
+              "name": "p_base",
+              "type": "Node"
+            },
+            {
+              "name": "p_type",
+              "type": "String"
+            }
+          ],
+          "returnType": "Array",
+          "line": 18,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "is_vector",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Variant"
+            }
+          ],
+          "returnType": "bool",
+          "line": 28,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "is_node",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Variant"
+            }
+          ],
+          "returnType": "bool",
+          "line": 32,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "is_2d_node",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Variant"
+            }
+          ],
+          "returnType": "bool",
+          "line": 36,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "is_3d_node",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Variant"
+            }
+          ],
+          "returnType": "bool",
+          "line": 40,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "16802bcf55479bd359666846fa93bfa5",
+      "lastModified": 1757939318668.4177
+    },
+    {
+      "path": "addons/sound_manager/null_pooled_audio_stream_player.gd",
+      "className": "NullPooledAudioStreamPlayer",
+      "extends": "PooledAudioStreamPlayer",
+      "functions": [
+        {
+          "name": "is_null",
+          "params": [],
+          "returnType": "bool",
+          "line": 7,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger",
+          "params": [],
+          "returnType": "void",
+          "line": 12,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger_varied",
+          "params": [
+            {
+              "name": "p_pitch",
+              "type": "float",
+              "default": "1.0"
+            },
+            {
+              "name": "p_volume",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 17,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_volume",
+          "params": [],
+          "returnType": "void",
+          "line": 22,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_pitch",
+          "params": [],
+          "returnType": "void",
+          "line": 27,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_all",
+          "params": [],
+          "returnType": "void",
+          "line": 32,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "release",
+          "params": [
+            {
+              "name": "p_finish_playing",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "void",
+          "line": 37,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "a07f77f8dc8c06c6e777e6dbbc9bdb64",
+      "lastModified": 1757939318759.4182
+    },
+    {
+      "path": "addons/sound_manager/null_pooled_audio_stream_player_2d.gd",
+      "className": "NullPooledAudioStreamPlayer2D",
+      "extends": "PooledAudioStreamPlayer2D",
+      "functions": [
+        {
+          "name": "is_null",
+          "params": [],
+          "returnType": "bool",
+          "line": 7,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger",
+          "params": [],
+          "returnType": "void",
+          "line": 12,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger_varied",
+          "params": [
+            {
+              "name": "p_pitch",
+              "type": "float",
+              "default": "1.0"
+            },
+            {
+              "name": "p_volume",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 17,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_volume",
+          "params": [],
+          "returnType": "void",
+          "line": 22,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_pitch",
+          "params": [],
+          "returnType": "void",
+          "line": 27,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_all",
+          "params": [],
+          "returnType": "void",
+          "line": 32,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "release",
+          "params": [
+            {
+              "name": "p_finish_playing",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "void",
+          "line": 37,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "2b68a041fe0974aea1abcb6b81080f97",
+      "lastModified": 1757939318769.4207
+    },
+    {
+      "path": "addons/sound_manager/null_pooled_audio_stream_player_3d.gd",
+      "className": "NullPooledAudioStreamPlayer3D",
+      "extends": "PooledAudioStreamPlayer3D",
+      "functions": [
+        {
+          "name": "is_null",
+          "params": [],
+          "returnType": "bool",
+          "line": 7,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger",
+          "params": [],
+          "returnType": "void",
+          "line": 12,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger_varied",
+          "params": [
+            {
+              "name": "p_pitch",
+              "type": "float",
+              "default": "1.0"
+            },
+            {
+              "name": "p_volume",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 17,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_volume",
+          "params": [],
+          "returnType": "void",
+          "line": 22,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_pitch",
+          "params": [],
+          "returnType": "void",
+          "line": 27,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_all",
+          "params": [],
+          "returnType": "void",
+          "line": 32,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "release",
+          "params": [
+            {
+              "name": "p_finish_playing",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "void",
+          "line": 37,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "f430e339c2921559b4f21e2e1095f8e1",
+      "lastModified": 1757939318780.4175
+    },
+    {
+      "path": "addons/sound_manager/pooled_audio_stream_player.gd",
+      "className": "PooledAudioStreamPlayer",
+      "extends": "AudioStreamPlayer",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 43,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "_p_delta"
+            }
+          ],
+          "returnType": "void",
+          "line": 47,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_physics_process",
+          "params": [
+            {
+              "name": "_p_delta"
+            }
+          ],
+          "returnType": "void",
+          "line": 52,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "create",
+          "params": [],
+          "returnType": "PooledAudioStreamPlayer",
+          "line": 62,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "is_null",
+          "params": [],
+          "returnType": "bool",
+          "line": 67,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "configure",
+          "params": [
+            {
+              "name": "p_streams",
+              "type": "Array"
+            },
+            {
+              "name": "p_reserved",
+              "type": "bool"
+            },
+            {
+              "name": "p_bus",
+              "type": "String"
+            },
+            {
+              "name": "p_poly",
+              "type": "bool"
+            },
+            {
+              "name": "p_volume",
+              "type": "float"
+            },
+            {
+              "name": "p_pitch",
+              "type": "float"
+            },
+            {
+              "name": "p_mode",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 72,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "attach_to",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Variant"
+            }
+          ],
+          "returnType": "void",
+          "line": 77,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger",
+          "params": [],
+          "returnType": "void",
+          "line": 82,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger_varied",
+          "params": [
+            {
+              "name": "p_pitch",
+              "type": "float",
+              "default": "1.0"
+            },
+            {
+              "name": "p_volume",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 88,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_volume",
+          "params": [],
+          "returnType": "void",
+          "line": 93,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_pitch",
+          "params": [],
+          "returnType": "void",
+          "line": 98,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_all",
+          "params": [],
+          "returnType": "void",
+          "line": 103,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "release",
+          "params": [
+            {
+              "name": "p_finish_playing",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "void",
+          "line": 109,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_finished",
+          "params": [],
+          "returnType": "void",
+          "line": 118,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "released",
+          "line": 8
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "6c91a3322edb4644683e2344f7354d20",
+      "lastModified": 1757939318807.0437
+    },
+    {
+      "path": "addons/sound_manager/pooled_audio_stream_player_2d.gd",
+      "className": "PooledAudioStreamPlayer2D",
+      "extends": "AudioStreamPlayer2D",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 43,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "_p_delta"
+            }
+          ],
+          "returnType": "void",
+          "line": 47,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_physics_process",
+          "params": [
+            {
+              "name": "_p_delta"
+            }
+          ],
+          "returnType": "void",
+          "line": 52,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "create",
+          "params": [],
+          "returnType": "PooledAudioStreamPlayer2D",
+          "line": 62,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "is_null",
+          "params": [],
+          "returnType": "bool",
+          "line": 67,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "configure",
+          "params": [
+            {
+              "name": "p_streams",
+              "type": "Array"
+            },
+            {
+              "name": "p_reserved",
+              "type": "bool"
+            },
+            {
+              "name": "p_bus",
+              "type": "String"
+            },
+            {
+              "name": "p_poly",
+              "type": "bool"
+            },
+            {
+              "name": "p_volume",
+              "type": "float"
+            },
+            {
+              "name": "p_pitch",
+              "type": "float"
+            },
+            {
+              "name": "p_mode",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 72,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "attach_to",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Variant"
+            }
+          ],
+          "returnType": "void",
+          "line": 77,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger",
+          "params": [],
+          "returnType": "void",
+          "line": 82,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger_varied",
+          "params": [
+            {
+              "name": "p_pitch",
+              "type": "float",
+              "default": "1.0"
+            },
+            {
+              "name": "p_volume",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 88,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_volume",
+          "params": [],
+          "returnType": "void",
+          "line": 93,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_pitch",
+          "params": [],
+          "returnType": "void",
+          "line": 98,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_all",
+          "params": [],
+          "returnType": "void",
+          "line": 103,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "release",
+          "params": [
+            {
+              "name": "p_finish_playing",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "void",
+          "line": 109,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_finished",
+          "params": [],
+          "returnType": "void",
+          "line": 118,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "released",
+          "line": 8
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "35242f7042d73c2190892a30f889b820",
+      "lastModified": 1757939318834.0405
+    },
+    {
+      "path": "addons/sound_manager/pooled_audio_stream_player_3d.gd",
+      "className": "PooledAudioStreamPlayer3D",
+      "extends": "AudioStreamPlayer3D",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 43,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "_p_delta"
+            }
+          ],
+          "returnType": "void",
+          "line": 47,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_physics_process",
+          "params": [
+            {
+              "name": "_p_delta"
+            }
+          ],
+          "returnType": "void",
+          "line": 52,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "create",
+          "params": [],
+          "returnType": "PooledAudioStreamPlayer3D",
+          "line": 62,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "is_null",
+          "params": [],
+          "returnType": "bool",
+          "line": 67,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "configure",
+          "params": [
+            {
+              "name": "p_streams",
+              "type": "Array"
+            },
+            {
+              "name": "p_reserved",
+              "type": "bool"
+            },
+            {
+              "name": "p_bus",
+              "type": "String"
+            },
+            {
+              "name": "p_poly",
+              "type": "bool"
+            },
+            {
+              "name": "p_volume",
+              "type": "float"
+            },
+            {
+              "name": "p_pitch",
+              "type": "float"
+            },
+            {
+              "name": "p_mode",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 72,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "attach_to",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Variant"
+            }
+          ],
+          "returnType": "void",
+          "line": 77,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger",
+          "params": [],
+          "returnType": "void",
+          "line": 82,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger_varied",
+          "params": [
+            {
+              "name": "p_pitch",
+              "type": "float",
+              "default": "1.0"
+            },
+            {
+              "name": "p_volume",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "returnType": "void",
+          "line": 88,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_volume",
+          "params": [],
+          "returnType": "void",
+          "line": 93,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_pitch",
+          "params": [],
+          "returnType": "void",
+          "line": 98,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_all",
+          "params": [],
+          "returnType": "void",
+          "line": 103,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "release",
+          "params": [
+            {
+              "name": "p_finish_playing",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "void",
+          "line": 109,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_finished",
+          "params": [],
+          "returnType": "void",
+          "line": 118,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "released",
+          "line": 8
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "6dec2d945010c0a36d4fc746b70b1989",
+      "lastModified": 1757939318820.043
+    },
+    {
+      "path": "addons/sound_manager/pool_entity.gd",
+      "className": "PoolEntity",
+      "extends": "RefCounted",
+      "functions": [
+        {
+          "name": "create",
+          "params": [
+            {
+              "name": "p_base"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 12,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "configure",
+          "params": [
+            {
+              "name": "p_base"
+            },
+            {
+              "name": "p_streams",
+              "type": "Array"
+            },
+            {
+              "name": "p_reserved",
+              "type": "bool"
+            },
+            {
+              "name": "p_bus",
+              "type": "String"
+            },
+            {
+              "name": "p_poly",
+              "type": "bool"
+            },
+            {
+              "name": "p_volume",
+              "type": "float"
+            },
+            {
+              "name": "p_pitch",
+              "type": "float"
+            },
+            {
+              "name": "p_mode",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 19,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "attach_to",
+          "params": [
+            {
+              "name": "p_base"
+            },
+            {
+              "name": "p_node",
+              "type": "Variant"
+            }
+          ],
+          "returnType": "void",
+          "line": 48,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "update_poly_playback_state",
+          "params": [
+            {
+              "name": "p_base"
+            }
+          ],
+          "returnType": "void",
+          "line": 61,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "sync_process",
+          "params": [
+            {
+              "name": "p_base"
+            }
+          ],
+          "returnType": "void",
+          "line": 83,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "sync_physics_process",
+          "params": [
+            {
+              "name": "p_base"
+            }
+          ],
+          "returnType": "void",
+          "line": 98,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "trigger",
+          "params": [
+            {
+              "name": "p_base"
+            },
+            {
+              "name": "p_varied",
+              "type": "bool"
+            },
+            {
+              "name": "p_pitch",
+              "type": "float"
+            },
+            {
+              "name": "p_volume",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 112,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_volume",
+          "params": [
+            {
+              "name": "p_base"
+            }
+          ],
+          "returnType": "void",
+          "line": 142,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_pitch",
+          "params": [
+            {
+              "name": "p_base"
+            }
+          ],
+          "returnType": "void",
+          "line": 147,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reset_all",
+          "params": [
+            {
+              "name": "p_base"
+            }
+          ],
+          "returnType": "void",
+          "line": 152,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "release",
+          "params": [
+            {
+              "name": "p_base"
+            },
+            {
+              "name": "p_finish_playing",
+              "type": "bool"
+            }
+          ],
+          "returnType": "void",
+          "line": 158,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "finished",
+          "params": [
+            {
+              "name": "p_base"
+            }
+          ],
+          "returnType": "void",
+          "line": 178,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [
+        "../shared/resonate_settings.gd"
+      ],
+      "checksum": "523ab2c7909a24dccc68744bc4ddbd93",
+      "lastModified": 1757939318793.417
+    },
+    {
+      "path": "addons/sound_manager/sound_bank.gd",
+      "className": "SoundBank",
+      "extends": "Node",
+      "functions": [],
+      "signals": [],
+      "exports": [
+        {
+          "name": "label",
+          "type": "String",
+          "line": 7
+        },
+        {
+          "name": "bus",
+          "type": "String",
+          "line": 11
+        },
+        {
+          "name": "mode",
+          "type": "Node",
+          "line": 14
+        },
+        {
+          "name": "events",
+          "type": "Array",
+          "line": 17
+        }
+      ],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "edc6399f45c25897843ff7bf0668af0b",
+      "lastModified": 1757939318698.4177
+    },
+    {
+      "path": "addons/sound_manager/sound_event_resource.gd",
+      "className": "SoundEventResource",
+      "extends": "Resource",
+      "functions": [],
+      "signals": [],
+      "exports": [
+        {
+          "name": "name",
+          "type": "String",
+          "default": "\"\"",
+          "line": 7
+        },
+        {
+          "name": "bus",
+          "type": "String",
+          "default": "\"\"",
+          "line": 12
+        },
+        {
+          "name": "pitch",
+          "type": "float",
+          "default": "1.0",
+          "line": 18
+        },
+        {
+          "name": "streams",
+          "type": "Array",
+          "line": 21
+        }
+      ],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "17693129c25bde591d0cf1c15222c5ae",
+      "lastModified": 1757939318733.4177
+    },
+    {
+      "path": "addons/sound_manager/sound_manager.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "_init",
+          "params": [],
+          "line": 45,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 49,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "_p_delta"
+            }
+          ],
+          "returnType": "void",
+          "line": 72,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "null_instance",
+          "params": [],
+          "returnType": "NullPooledAudioStreamPlayer",
+          "line": 94,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "null_instance_2d",
+          "params": [],
+          "returnType": "NullPooledAudioStreamPlayer2D",
+          "line": 101,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "null_instance_3d",
+          "params": [],
+          "returnType": "NullPooledAudioStreamPlayer3D",
+          "line": 108,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "should_skip_instancing",
+          "params": [
+            {
+              "name": "p_instance"
+            }
+          ],
+          "returnType": "bool",
+          "line": 115,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "quick_instance",
+          "params": [
+            {
+              "name": "p_instance"
+            },
+            {
+              "name": "p_factory",
+              "type": "Callable"
+            },
+            {
+              "name": "p_base",
+              "type": "Node",
+              "default": "null"
+            },
+            {
+              "name": "p_finish_playing",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 135,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "play",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "void",
+          "line": 148,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "play_at_position",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_position"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "void",
+          "line": 155,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "play_on_node",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_node"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "void",
+          "line": 163,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "play_varied",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_pitch",
+              "type": "float",
+              "default": "1.0"
+            },
+            {
+              "name": "p_volume",
+              "type": "float",
+              "default": "0.0"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "void",
+          "line": 170,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "play_at_position_varied",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_position"
+            },
+            {
+              "name": "p_pitch",
+              "type": "float",
+              "default": "1.0"
+            },
+            {
+              "name": "p_volume",
+              "type": "float",
+              "default": "0.0"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "void",
+          "line": 178,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "play_on_node_varied",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_node"
+            },
+            {
+              "name": "p_pitch",
+              "type": "float",
+              "default": "1.0"
+            },
+            {
+              "name": "p_volume",
+              "type": "float",
+              "default": "0.0"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "void",
+          "line": 187,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "instance",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "Variant",
+          "line": 196,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "instance_at_position",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_position"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "Variant",
+          "line": 204,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "instance_on_node",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_node"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "Variant",
+          "line": 212,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "instance_poly",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "Variant",
+          "line": 221,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "instance_at_position_poly",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_position"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "Variant",
+          "line": 231,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "instance_on_node_poly",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_node"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            }
+          ],
+          "returnType": "Variant",
+          "line": 241,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "release_on_exit",
+          "params": [
+            {
+              "name": "p_base",
+              "type": "Node"
+            },
+            {
+              "name": "p_instance",
+              "type": "Node"
+            },
+            {
+              "name": "p_finish_playing",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "void",
+          "line": 247,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "auto_release",
+          "params": [
+            {
+              "name": "p_base",
+              "type": "Node"
+            },
+            {
+              "name": "p_instance",
+              "type": "Node"
+            },
+            {
+              "name": "p_finish_playing",
+              "type": "bool",
+              "default": "false"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 258,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "add_bank",
+          "params": [
+            {
+              "name": "p_bank",
+              "type": "SoundBank"
+            }
+          ],
+          "returnType": "void",
+          "line": 270,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "remove_bank",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 275,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "clear_banks",
+          "params": [],
+          "returnType": "void",
+          "line": 283,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_scene_node_added",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 292,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_scene_node_removed",
+          "params": [
+            {
+              "name": "p_node",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 299,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_initialise_pool",
+          "params": [
+            {
+              "name": "p_size",
+              "type": "int"
+            },
+            {
+              "name": "p_creator_fn",
+              "type": "Callable"
+            }
+          ],
+          "returnType": "void",
+          "line": 306,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_auto_add_events",
+          "params": [],
+          "returnType": "void",
+          "line": 311,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_add_bank",
+          "params": [
+            {
+              "name": "p_bank",
+              "type": "SoundBank"
+            }
+          ],
+          "returnType": "void",
+          "line": 320,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_remove_bank",
+          "params": [
+            {
+              "name": "p_bank",
+              "type": "SoundBank"
+            }
+          ],
+          "returnType": "void",
+          "line": 336,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_create_events",
+          "params": [
+            {
+              "name": "p_events",
+              "type": "Array"
+            }
+          ],
+          "returnType": "Dictionary",
+          "line": 348,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_get_bus",
+          "params": [
+            {
+              "name": "p_bank_bus",
+              "type": "String"
+            },
+            {
+              "name": "p_event_bus",
+              "type": "String"
+            }
+          ],
+          "returnType": "String",
+          "line": 363,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_instance_manual",
+          "params": [
+            {
+              "name": "p_bank_label",
+              "type": "String"
+            },
+            {
+              "name": "p_event_name",
+              "type": "String"
+            },
+            {
+              "name": "p_reserved",
+              "type": "bool",
+              "default": "false"
+            },
+            {
+              "name": "p_bus",
+              "type": "String",
+              "default": "\"\""
+            },
+            {
+              "name": "p_poly",
+              "type": "bool",
+              "default": "false"
+            },
+            {
+              "name": "p_attachment",
+              "default": "null"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 375,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_is_player_free",
+          "params": [
+            {
+              "name": "p_player"
+            }
+          ],
+          "returnType": "bool",
+          "line": 409,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_get_player_from_pool",
+          "params": [
+            {
+              "name": "p_pool",
+              "type": "Array"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 413,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_get_player_1d",
+          "params": [],
+          "returnType": "PooledAudioStreamPlayer",
+          "line": 426,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_get_player_2d",
+          "params": [],
+          "returnType": "PooledAudioStreamPlayer2D",
+          "line": 430,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_get_player_3d",
+          "params": [],
+          "returnType": "PooledAudioStreamPlayer3D",
+          "line": 434,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_get_player",
+          "params": [
+            {
+              "name": "p_attachment",
+              "default": "null"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 438,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_get_null_player",
+          "params": [
+            {
+              "name": "p_attachment",
+              "default": "null"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 448,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_add_player_to_pool",
+          "params": [
+            {
+              "name": "p_player"
+            },
+            {
+              "name": "p_pool"
+            }
+          ],
+          "returnType": "Variant",
+          "line": 458,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_create_player_1d",
+          "params": [],
+          "returnType": "PooledAudioStreamPlayer",
+          "line": 468,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_create_player_2d",
+          "params": [],
+          "returnType": "PooledAudioStreamPlayer2D",
+          "line": 472,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_create_player_3d",
+          "params": [],
+          "returnType": "PooledAudioStreamPlayer3D",
+          "line": 476,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_player_released",
+          "params": [
+            {
+              "name": "p_player",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 480,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_player_finished",
+          "params": [
+            {
+              "name": "p_player",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 488,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "loaded",
+          "line": 17
+        },
+        {
+          "name": "banks_updated",
+          "line": 21
+        },
+        {
+          "name": "pools_updated",
+          "line": 24
+        },
+        {
+          "name": "SoundManager",
+          "line": 26
+        },
+        {
+          "name": "SoundManager",
+          "line": 26
+        },
+        {
+          "name": "SoundManager",
+          "line": 27
+        },
+        {
+          "name": "updated",
+          "line": 28
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "banks_updated",
+          "line": 75
+        },
+        {
+          "signal": "updated",
+          "line": 76
+        },
+        {
+          "signal": "loaded",
+          "line": 82
+        },
+        {
+          "signal": "updated",
+          "line": 83
+        },
+        {
+          "signal": "pools_updated",
+          "line": 484
+        },
+        {
+          "signal": "updated",
+          "line": 485
+        },
+        {
+          "signal": "pools_updated",
+          "line": 492
+        },
+        {
+          "signal": "updated",
+          "line": 493
+        }
+      ],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [
+        "../shared/resonate_settings.gd"
+      ],
+      "checksum": "7c99d148b666a57ab11992b218f1c12b",
+      "lastModified": 1757939318748.4192
+    },
+    {
+      "path": "code/audio_manager.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "line": 10,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_on_sound_manager_loaded",
+          "params": [],
+          "line": 29,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_music_manager_loaded",
+          "params": [],
+          "line": 32,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "play_sound",
+          "params": [
+            {
+              "name": "sound_name",
+              "type": "String"
+            },
+            {
+              "name": "position",
+              "type": "Vector3",
+              "default": "Vector3.ZERO"
+            },
+            {
+              "name": "volume_db",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "line": 36,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "play_3d_sound",
+          "params": [
+            {
+              "name": "sound_name",
+              "type": "String"
+            },
+            {
+              "name": "position",
+              "type": "Vector3"
+            },
+            {
+              "name": "volume_db",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "line": 47,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "play_music",
+          "params": [
+            {
+              "name": "track_name",
+              "type": "String"
+            },
+            {
+              "name": "fade_in",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "line": 59,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "stop_music",
+          "params": [
+            {
+              "name": "fade_out",
+              "type": "float",
+              "default": "0.0"
+            }
+          ],
+          "line": 70,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "crossfade_music",
+          "params": [
+            {
+              "name": "track_name",
+              "type": "String"
+            },
+            {
+              "name": "fade_time",
+              "type": "float",
+              "default": "1.0"
+            }
+          ],
+          "line": 81,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "set_master_volume",
+          "params": [
+            {
+              "name": "volume_db",
+              "type": "float"
+            }
+          ],
+          "line": 93,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "set_sfx_volume",
+          "params": [
+            {
+              "name": "volume_db",
+              "type": "float"
+            }
+          ],
+          "line": 97,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "set_music_volume",
+          "params": [
+            {
+              "name": "volume_db",
+              "type": "float"
+            }
+          ],
+          "line": 103,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_set_initial_volumes",
+          "params": [],
+          "line": 109,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_start_background_music",
+          "params": [],
+          "line": 116,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "audio_ready",
+          "line": 6
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "audio_ready",
+          "line": 27
+        }
+      ],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "59f2bcde5608c626779acc924a924453",
+      "lastModified": 1758023180061.7163
+    },
+    {
+      "path": "code/audio_setup.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "line": 6,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_setup_sound_effects",
+          "params": [],
+          "line": 18,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_setup_background_music",
+          "params": [],
+          "line": 59,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "SoundBank",
+        "MusicBank"
+      ],
+      "preloads": [
+        "addons/sound_manager/sound_event_resource.gd",
+        "audio/sounds/tank_engine.wav",
+        "audio/sounds/tank_movement.wav",
+        "audio/sounds/cannon_fire.wav",
+        "audio/sounds/projectile_impact.wav",
+        "audio/sounds/ui_click.wav",
+        "audio/sounds/ui_hover.wav",
+        "addons/music_manager/music_track_resource.gd",
+        "audio/music/main_theme.ogg",
+        "audio/music/combat_theme.ogg",
+        "audio/music/ambient_theme.ogg"
+      ],
+      "checksum": "b5acd5f2c27f4ec5c4831324f4e09859",
+      "lastModified": 1769174752679.8254
+    },
+    {
+      "path": "code/components/aiming_helper.gd",
+      "className": "AimingHelper",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "get_screen_center_target",
+          "params": [
+            {
+              "name": "camera",
+              "type": "Camera3D"
+            },
+            {
+              "name": "max_distance",
+              "type": "float"
+            },
+            {
+              "name": "exclude_bodies",
+              "type": "Array",
+              "default": "[]"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 8,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "get_mouse_ground_target",
+          "params": [
+            {
+              "name": "camera",
+              "type": "Camera3D"
+            },
+            {
+              "name": "mouse_position",
+              "type": "Vector2"
+            },
+            {
+              "name": "ground_y",
+              "type": "float",
+              "default": "0.0"
+            },
+            {
+              "name": "exclude_bodies",
+              "type": "Array",
+              "default": "[]"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 49,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "get_forward_target",
+          "params": [
+            {
+              "name": "camera",
+              "type": "Camera3D"
+            },
+            {
+              "name": "distance",
+              "type": "float"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 89,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "calculate_fire_direction",
+          "params": [
+            {
+              "name": "muzzle_position",
+              "type": "Vector3"
+            },
+            {
+              "name": "target_position",
+              "type": "Vector3"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 103,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "calculate_lead_target",
+          "params": [
+            {
+              "name": "target_position",
+              "type": "Vector3"
+            },
+            {
+              "name": "target_velocity",
+              "type": "Vector3"
+            },
+            {
+              "name": "projectile_speed",
+              "type": "float"
+            },
+            {
+              "name": "muzzle_position",
+              "type": "Vector3"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 119,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "has_clear_line_of_sight",
+          "params": [
+            {
+              "name": "from_position",
+              "type": "Vector3"
+            },
+            {
+              "name": "to_position",
+              "type": "Vector3"
+            },
+            {
+              "name": "world_3d",
+              "type": "World3D"
+            },
+            {
+              "name": "exclude_bodies",
+              "type": "Array",
+              "default": "[]"
+            }
+          ],
+          "returnType": "bool",
+          "line": 131,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "get_target_for_mode",
+          "params": [
+            {
+              "name": "mode",
+              "type": "String"
+            },
+            {
+              "name": "camera",
+              "type": "Camera3D"
+            },
+            {
+              "name": "player",
+              "type": "Node3D"
+            },
+            {
+              "name": "config_max_distance",
+              "type": "float"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 155,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "d5b17b01a67ead104f11e5402eea5215",
+      "lastModified": 1767956323486.6372
+    },
+    {
+      "path": "code/components/shooting_component.gd",
+      "className": "ShootingComponent",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 35,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_detect_controller_mode",
+          "params": [],
+          "returnType": "void",
+          "line": 75,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_load_config",
+          "params": [],
+          "returnType": "void",
+          "line": 79,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_unhandled_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 96,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_check_ammo",
+          "params": [],
+          "returnType": "bool",
+          "line": 121,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_shoot",
+          "params": [],
+          "returnType": "void",
+          "line": 135,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_start_cooldown",
+          "params": [],
+          "returnType": "void",
+          "line": 170,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_start_reload",
+          "params": [],
+          "returnType": "void",
+          "line": 176,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reload",
+          "params": [],
+          "returnType": "void",
+          "line": 193,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "shot_fired",
+          "line": 10
+        },
+        {
+          "name": "ammo_changed",
+          "params": [
+            {
+              "name": "current",
+              "type": "int"
+            },
+            {
+              "name": "max",
+              "type": "int"
+            }
+          ],
+          "line": 11
+        },
+        {
+          "name": "reload_started",
+          "line": 12
+        },
+        {
+          "name": "reload_finished",
+          "line": 13
+        },
+        {
+          "name": "shot_fired",
+          "line": 162
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "ammo_changed",
+          "line": 71
+        },
+        {
+          "signal": "ammo_changed",
+          "line": 160
+        },
+        {
+          "signal": "shot_fired",
+          "line": 163
+        },
+        {
+          "signal": "reload_started",
+          "line": 182
+        },
+        {
+          "signal": "reload_finished",
+          "line": 189
+        },
+        {
+          "signal": "ammo_changed",
+          "line": 190
+        }
+      ],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [
+        "code/components/weapon_component.gd",
+        "assets/tank_projectile.tscn"
+      ],
+      "checksum": "8d22fde97df4cfb6e2224e87997a797d",
+      "lastModified": 1767956326091.191
+    },
+    {
+      "path": "code/components/weapon_component.gd",
+      "className": "WeaponComponent",
+      "extends": "Node3D",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 31,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_detect_controller_mode",
+          "params": [],
+          "returnType": "void",
+          "line": 51,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_load_config",
+          "params": [],
+          "returnType": "void",
+          "line": 55,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_find_camera",
+          "params": [],
+          "returnType": "void",
+          "line": 75,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_find_active_camera",
+          "params": [
+            {
+              "name": "node",
+              "type": "Node"
+            }
+          ],
+          "returnType": "Camera3D",
+          "line": 84,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_load_weapon_model",
+          "params": [],
+          "returnType": "void",
+          "line": 96,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_setup_tank_weapon",
+          "params": [],
+          "returnType": "void",
+          "line": 156,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_attach_weapon_to_parent",
+          "params": [],
+          "returnType": "void",
+          "line": 197,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_find_muzzle_marker",
+          "params": [],
+          "returnType": "void",
+          "line": 241,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_find_node_by_name",
+          "params": [
+            {
+              "name": "node",
+              "type": "Node"
+            },
+            {
+              "name": "node_name",
+              "type": "String"
+            }
+          ],
+          "returnType": "Node",
+          "line": 256,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 268,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_update_weapon_rotation",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 273,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "get_muzzle_position",
+          "params": [],
+          "returnType": "Vector3",
+          "line": 298,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "get_target_position",
+          "params": [],
+          "returnType": "Vector3",
+          "line": 324,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "get_fire_direction",
+          "params": [],
+          "returnType": "Vector3",
+          "line": 332,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "has_weapon",
+          "params": [],
+          "returnType": "bool",
+          "line": 338,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "reload_weapon",
+          "params": [],
+          "returnType": "void",
+          "line": 342,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "weapon_ready",
+          "line": 10
+        },
+        {
+          "name": "weapon_changed",
+          "params": [
+            {
+              "name": "weapon_scene_path",
+              "type": "String"
+            }
+          ],
+          "line": 11
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "weapon_ready",
+          "line": 48
+        },
+        {
+          "signal": "weapon_changed",
+          "line": 151
+        }
+      ],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "Muzzle"
+      ],
+      "preloads": [
+        "code/components/aiming_helper.gd"
+      ],
+      "checksum": "a87e3b482a9ed241759dd1215befe22f",
+      "lastModified": 1767956313802.8376
+    },
+    {
+      "path": "code/game_config.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "get_value",
+          "params": [
+            {
+              "name": "section",
+              "type": "String"
+            },
+            {
+              "name": "key",
+              "type": "String"
+            },
+            {
+              "name": "default",
+              "default": "null"
+            }
+          ],
+          "line": 9,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "line": 33,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_debug_print_weapons_config",
+          "params": [],
+          "returnType": "void",
+          "line": 68,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "config_loaded",
+          "line": 3
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "config_loaded",
+          "line": 66
+        }
+      ],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [
+        "game_config.cfg"
+      ],
+      "checksum": "6a432f3639099fedd7710cc88d34809e",
+      "lastModified": 1767956349330.8467
+    },
+    {
+      "path": "code/logger.gd",
+      "className": "Log",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "_log",
+          "params": [
+            {
+              "name": "level",
+              "type": "LogLevel"
+            },
+            {
+              "name": "message",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 8,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "info",
+          "params": [
+            {
+              "name": "message",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 23,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "warning",
+          "params": [
+            {
+              "name": "message",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 26,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "error",
+          "params": [
+            {
+              "name": "message",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 29,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "performance",
+          "params": [
+            {
+              "name": "message",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 32,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "start_performance_check",
+          "params": [
+            {
+              "name": "check_name",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 35,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "end_performance_check",
+          "params": [
+            {
+              "name": "check_name",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 39,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "start_timer",
+          "params": [
+            {
+              "name": "label",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 50,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "end_timer",
+          "params": [
+            {
+              "name": "label",
+              "type": "String"
+            }
+          ],
+          "returnType": "void",
+          "line": 53,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "ff73ad51adf51e61d7f5ee603d225484",
+      "lastModified": 1767956201975.0227
+    },
+    {
+      "path": "code/main.gd",
+      "extends": "Node3D",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 12,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_on_play_pressed",
+          "params": [],
+          "returnType": "void",
+          "line": 52,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_set_mouse_mode_for_controller",
+          "params": [],
+          "returnType": "void",
+          "line": 79,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_start_game",
+          "params": [],
+          "returnType": "void",
+          "line": 100,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "TitleScreen",
+        "UILayer",
+        "Player"
+      ],
+      "preloads": [],
+      "checksum": "ebe9d6ce0be14c614bf5a01189a346f6",
+      "lastModified": 1767956316006.188
+    },
+    {
+      "path": "code/player_controller.gd",
+      "extends": "CharacterBody3D",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "line": 5,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "initialize_controller",
+          "params": [],
+          "line": 12,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_unhandled_input",
+          "params": [
+            {
+              "name": "event"
+            }
+          ],
+          "line": 48,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_physics_process",
+          "params": [
+            {
+              "name": "delta"
+            }
+          ],
+          "line": 56,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [
+        "code/player_controllers/first_person_controller.gd",
+        "code/player_controllers/third_person_controller.gd",
+        "code/player_controllers/over_the_shoulder_controller.gd",
+        "code/player_controllers/top_down_controller.gd",
+        "code/player_controllers/isometric_controller.gd",
+        "code/player_controllers/free_camera_controller.gd",
+        "code/tank_controller.gd"
+      ],
+      "checksum": "9f73541bb1933f1bc584bae71f80caa2",
+      "lastModified": 1767956350828.2312
+    },
+    {
+      "path": "code/player_controllers/first_person_controller.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "initialize",
+          "params": [
+            {
+              "name": "player_node",
+              "type": "CharacterBody3D"
+            }
+          ],
+          "returnType": "void",
+          "line": 42,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 109,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "handle_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 112,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_mouse_motion",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEventMouseMotion"
+            }
+          ],
+          "returnType": "void",
+          "line": 120,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "handle_physics",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 125,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_calculate_movement_direction",
+          "params": [
+            {
+              "name": "input_dir",
+              "type": "Vector2"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 147,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "cleanup",
+          "params": [],
+          "returnType": "void",
+          "line": 151,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "PlayerMesh",
+        "SelectionRing",
+        "Turret",
+        "TankHull"
+      ],
+      "preloads": [],
+      "checksum": "52bf65cedf8841c03bd6718aa1c21e28",
+      "lastModified": 1767956354144.429
+    },
+    {
+      "path": "code/player_controllers/free_camera_controller.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "initialize",
+          "params": [
+            {
+              "name": "player_node",
+              "type": "CharacterBody3D"
+            }
+          ],
+          "returnType": "void",
+          "line": 47,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 100,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "handle_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 103,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_orbit_rotation",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEventMouseMotion"
+            }
+          ],
+          "returnType": "void",
+          "line": 132,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_update_camera_position",
+          "params": [],
+          "returnType": "void",
+          "line": 144,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "handle_physics",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 165,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "cleanup",
+          "params": [],
+          "returnType": "void",
+          "line": 226,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "d6edec2a7a6522161996dc88557c9387",
+      "lastModified": 1767956328911.7014
+    },
+    {
+      "path": "code/player_controllers/isometric_controller.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "initialize",
+          "params": [
+            {
+              "name": "player_node",
+              "type": "CharacterBody3D"
+            }
+          ],
+          "returnType": "void",
+          "line": 53,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 107,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "handle_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 110,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_mouse_button",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEventMouseButton"
+            }
+          ],
+          "returnType": "void",
+          "line": 118,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_left_click",
+          "params": [
+            {
+              "name": "mouse_pos",
+              "type": "Vector2"
+            }
+          ],
+          "returnType": "void",
+          "line": 129,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "handle_physics",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 146,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_calculate_movement_direction",
+          "params": [],
+          "returnType": "Vector3",
+          "line": 198,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "cleanup",
+          "params": [],
+          "returnType": "void",
+          "line": 211,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [
+        {
+          "signal": "animation_finished",
+          "handler": "Callable",
+          "line": 144
+        }
+      ],
+      "nodeAccesses": [
+        "AnimationPlayer"
+      ],
+      "preloads": [
+        "assets/destination_marker.tscn"
+      ],
+      "checksum": "d8bc97c3419bc8c37a952d3ef5381095",
+      "lastModified": 1767956331642.7207
+    },
+    {
+      "path": "code/player_controllers/over_the_shoulder_controller.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "initialize",
+          "params": [
+            {
+              "name": "player_node",
+              "type": "CharacterBody3D"
+            }
+          ],
+          "returnType": "void",
+          "line": 42,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 108,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "handle_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 111,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_mouse_motion",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEventMouseMotion"
+            }
+          ],
+          "returnType": "void",
+          "line": 119,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "handle_physics",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 124,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_calculate_movement_direction",
+          "params": [
+            {
+              "name": "input_dir",
+              "type": "Vector2"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 146,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "cleanup",
+          "params": [],
+          "returnType": "void",
+          "line": 150,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "PlayerMesh",
+        "SelectionRing",
+        "Turret",
+        "TankHull"
+      ],
+      "preloads": [],
+      "checksum": "0af32a5348d2e4f84ac78aaf7053ee23",
+      "lastModified": 1767956352463.5955
+    },
+    {
+      "path": "code/tank_controller.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "initialize",
+          "params": [
+            {
+              "name": "player_node",
+              "type": "CharacterBody3D"
+            }
+          ],
+          "returnType": "void",
+          "line": 51,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_create_crosshair",
+          "params": [],
+          "returnType": "void",
+          "line": 336,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "handle_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 364,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "handle_physics",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 425,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_apply_terrain_rotation",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            },
+            {
+              "name": "preserve_y_rotation",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 460,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_calculate_movement_direction",
+          "params": [],
+          "returnType": "Vector3",
+          "line": 529,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "cleanup",
+          "params": [],
+          "returnType": "void",
+          "line": 532,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "PlayerTank/Turret",
+        "PlayerMesh",
+        "PlayerTank/TankHull",
+        "PlayerTank/Turret/BarrelPivot",
+        "PlayerTank/Turret/TankGunBarrel",
+        "BarrelTip"
+      ],
+      "preloads": [
+        "assets/tank_projectile.tscn",
+        "game_config.cfg"
+      ],
+      "checksum": "d9c815c8808521f45d6525c21cbd5d00",
+      "lastModified": 1767956311799.6604
+    },
+    {
+      "path": "code/player_controllers/tank_controller_BACKUP.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "initialize",
+          "params": [
+            {
+              "name": "player_node",
+              "type": "CharacterBody3D"
+            }
+          ],
+          "returnType": "void",
+          "line": 72,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 146,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "handle_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 149,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_mouse_button",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEventMouseButton"
+            }
+          ],
+          "returnType": "void",
+          "line": 157,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "handle_physics",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 162,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_tank_movement",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 180,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_update_turret_aiming",
+          "params": [],
+          "returnType": "void",
+          "line": 203,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_rotate_turret_to_target",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 235,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_shoot_projectile",
+          "params": [],
+          "returnType": "void",
+          "line": 260,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_create_aim_marker",
+          "params": [],
+          "returnType": "void",
+          "line": 293,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_start_fire_cooldown",
+          "params": [],
+          "returnType": "void",
+          "line": 299,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_calculate_movement_direction",
+          "params": [],
+          "returnType": "Vector3",
+          "line": 304,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "cleanup",
+          "params": [],
+          "returnType": "void",
+          "line": 308,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "Turret/SpringArm3D/Camera3D",
+        "Turret/SpringArm3D",
+        "PlayerMesh",
+        "SelectionRing",
+        "Turret",
+        "TurretMesh",
+        "TankHull",
+        "TankGunBarrel",
+        "BarrelTip"
+      ],
+      "preloads": [
+        "assets/tank_projectile.tscn",
+        "assets/tank_aim_marker.tscn",
+        "game_config.cfg"
+      ],
+      "checksum": "a90afc2f0399db3fc50db90805a07c70",
+      "lastModified": 1767956357669.6672
+    },
+    {
+      "path": "code/player_controllers/third_person_controller.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "initialize",
+          "params": [
+            {
+              "name": "player_node",
+              "type": "CharacterBody3D"
+            }
+          ],
+          "returnType": "void",
+          "line": 42,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 108,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "handle_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 111,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_mouse_motion",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEventMouseMotion"
+            }
+          ],
+          "returnType": "void",
+          "line": 119,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "handle_physics",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 124,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_calculate_movement_direction",
+          "params": [
+            {
+              "name": "input_dir",
+              "type": "Vector2"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 146,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "cleanup",
+          "params": [],
+          "returnType": "void",
+          "line": 150,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "PlayerMesh",
+        "SelectionRing",
+        "Turret",
+        "TankHull"
+      ],
+      "preloads": [],
+      "checksum": "61442081972e55095c908e8387f2dbe0",
+      "lastModified": 1767956347838.3723
+    },
+    {
+      "path": "code/player_controllers/top_down_controller.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "initialize",
+          "params": [
+            {
+              "name": "player_node",
+              "type": "CharacterBody3D"
+            }
+          ],
+          "returnType": "void",
+          "line": 48,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 107,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "handle_input",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEvent"
+            }
+          ],
+          "returnType": "void",
+          "line": 110,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_mouse_button",
+          "params": [
+            {
+              "name": "event",
+              "type": "InputEventMouseButton"
+            }
+          ],
+          "returnType": "void",
+          "line": 118,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "handle_physics",
+          "params": [
+            {
+              "name": "delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 128,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_handle_mouse_aiming",
+          "params": [],
+          "returnType": "void",
+          "line": 223,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_calculate_movement_direction",
+          "params": [
+            {
+              "name": "input_dir",
+              "type": "Vector2"
+            }
+          ],
+          "returnType": "Vector3",
+          "line": 237,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "cleanup",
+          "params": [],
+          "returnType": "void",
+          "line": 241,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "262598a97489feb0b9156b1bbaea9c96",
+      "lastModified": 1767956334539.666
+    },
+    {
+      "path": "code/player_visuals_manager.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "line": 7,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "set_visuals_for_mode",
+          "params": [
+            {
+              "name": "mode_name"
+            }
+          ],
+          "line": 14,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "PlayerMesh",
+        "SelectionRing",
+        "TankModel"
+      ],
+      "preloads": [],
+      "checksum": "7190c26b7e7591dc9c5ed4354d178aaf",
+      "lastModified": 1755546216204.7686
+    },
+    {
+      "path": "code/projectile.gd",
+      "extends": "RigidBody3D",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "line": 6,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_physics_process",
+          "params": [
+            {
+              "name": "delta"
+            }
+          ],
+          "line": 17,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_on_body_entered",
+          "params": [
+            {
+              "name": "body"
+            }
+          ],
+          "line": 24,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "destroy",
+          "params": [],
+          "line": 37,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "for",
+          "line": 7
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "de4fffb559c9e05228ecc312b78d0539",
+      "lastModified": 1769174771548.4087
+    },
+    {
+      "path": "code/projectile_hit_effect.gd",
+      "className": "ProjectileHitEffect",
+      "extends": "GPUParticles3D",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 4,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [],
+      "checksum": "8e09b7cb73b3812057a0763fae9fee78",
+      "lastModified": 1767956355830.8618
+    },
+    {
+      "path": "code/shooting_manager.gd",
+      "extends": "Node",
+      "functions": [
+        {
+          "name": "initialize",
+          "params": [
+            {
+              "name": "player_node"
+            },
+            {
+              "name": "camera_node"
+            }
+          ],
+          "line": 12,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_ready",
+          "params": [],
+          "line": 24,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "update_crosshair_visibility",
+          "params": [],
+          "line": 27,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "update_crosshair_visibility_for_mode",
+          "params": [
+            {
+              "name": "control_mode"
+            }
+          ],
+          "line": 40,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "delta"
+            }
+          ],
+          "line": 50,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "handle_input",
+          "params": [
+            {
+              "name": "event"
+            }
+          ],
+          "line": 68,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "fire_projectile",
+          "params": [],
+          "line": 72,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "fire_first_person",
+          "params": [
+            {
+              "name": "projectile"
+            }
+          ],
+          "line": 106,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "fire_third_person",
+          "params": [
+            {
+              "name": "projectile"
+            }
+          ],
+          "line": 112,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "fire_over_the_shoulder",
+          "params": [
+            {
+              "name": "projectile"
+            }
+          ],
+          "line": 140,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "fire_top_down",
+          "params": [
+            {
+              "name": "projectile"
+            }
+          ],
+          "line": 168,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "fire_tank",
+          "params": [
+            {
+              "name": "projectile"
+            }
+          ],
+          "line": 193,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "update_tank_aiming_marker",
+          "params": [],
+          "line": 211,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "../UILayer/Crosshair",
+        "TankModel",
+        "Turret",
+        "TankGunBarrel",
+        "PlayerController"
+      ],
+      "preloads": [
+        "assets/projectile.tscn",
+        "game_config.cfg"
+      ],
+      "checksum": "f75710633465ad24d4f275948b2c2650",
+      "lastModified": 1760988943582.0447
+    },
+    {
+      "path": "code/tank_projectile.gd",
+      "className": "TankProjectile",
+      "extends": "RigidBody3D",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 13,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "launch",
+          "params": [
+            {
+              "name": "launch_direction",
+              "type": "Vector3"
+            },
+            {
+              "name": "launch_speed",
+              "type": "float",
+              "default": "30.0"
+            },
+            {
+              "name": "launch_gravity_scale",
+              "type": "float",
+              "default": "0.15"
+            }
+          ],
+          "returnType": "void",
+          "line": 33,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_apply_projectile_color",
+          "params": [],
+          "returnType": "void",
+          "line": 49,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_apply_color_to_meshes",
+          "params": [
+            {
+              "name": "node",
+              "type": "Node"
+            },
+            {
+              "name": "color",
+              "type": "Color"
+            }
+          ],
+          "returnType": "void",
+          "line": 62,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_body_entered",
+          "params": [
+            {
+              "name": "body",
+              "type": "Node"
+            }
+          ],
+          "returnType": "void",
+          "line": 89,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [
+        {
+          "name": "speed",
+          "type": "float",
+          "default": "30.0",
+          "line": 7
+        },
+        {
+          "name": "lifetime",
+          "type": "float",
+          "default": "8.0",
+          "line": 8
+        },
+        {
+          "name": "damage",
+          "type": "int",
+          "default": "25",
+          "line": 9
+        }
+      ],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [
+        "assets/projectile_hit_effect.tscn"
+      ],
+      "checksum": "15876ff7e5529995f755f206ead8c28c",
+      "lastModified": 1767956320908.92
+    },
+    {
+      "path": "code/tools/apply_tank_meshes_fixed.gd",
+      "extends": "EditorScript",
+      "functions": [
+        {
+          "name": "_run",
+          "params": [],
+          "line": 8,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_set_owner_recursive",
+          "params": [
+            {
+              "name": "node",
+              "type": "Node"
+            },
+            {
+              "name": "new_owner",
+              "type": "Node"
+            }
+          ],
+          "line": 223,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_reset_owner_recursive",
+          "params": [
+            {
+              "name": "node",
+              "type": "Node"
+            }
+          ],
+          "line": 228,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [
+        "main.tscn",
+        "assets/3d_models/tanks/Tank.fbx"
+      ],
+      "checksum": "52bf1c1bcfee9c272e550cc68b36fa5d",
+      "lastModified": 1762090750381.2563
+    },
+    {
+      "path": "code/tools/cleanup_tank_duplicates.gd",
+      "extends": "EditorScript",
+      "functions": [
+        {
+          "name": "_run",
+          "params": [],
+          "line": 7,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [],
+      "preloads": [
+        "main.tscn"
+      ],
+      "checksum": "b001ca7e1f8dbfa78a7406149737f637",
+      "lastModified": 1762090750382.2566
+    },
+    {
+      "path": "code/UI/aim_cursor.gd",
+      "className": "AimCursor",
+      "extends": "Control",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 9,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_process",
+          "params": [
+            {
+              "name": "_delta",
+              "type": "float"
+            }
+          ],
+          "returnType": "void",
+          "line": 21,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "update_position",
+          "params": [
+            {
+              "name": "screen_pos",
+              "type": "Vector2"
+            }
+          ],
+          "returnType": "void",
+          "line": 27,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "show_cursor",
+          "params": [],
+          "returnType": "void",
+          "line": 32,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "hide_cursor",
+          "params": [],
+          "returnType": "void",
+          "line": 36,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "CenterContainer"
+      ],
+      "preloads": [],
+      "checksum": "aae2f2e6ef42dd25b674db6f6e5df1d5",
+      "lastModified": 1761475363840.7864
+    },
+    {
+      "path": "code/UI/title_screen.gd",
+      "className": "TitleScreen",
+      "extends": "CanvasLayer",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "returnType": "void",
+          "line": 15,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_apply_background",
+          "params": [],
+          "returnType": "void",
+          "line": 34,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_use_background_color",
+          "params": [],
+          "returnType": "void",
+          "line": 62,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_apply_button_colors",
+          "params": [],
+          "returnType": "void",
+          "line": 76,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_check_title_image",
+          "params": [],
+          "returnType": "void",
+          "line": 130,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_show_fallback_title",
+          "params": [],
+          "returnType": "void",
+          "line": 144,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_play_pressed",
+          "params": [],
+          "returnType": "void",
+          "line": 165,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "show_title_screen",
+          "params": [],
+          "returnType": "void",
+          "line": 183,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "hide_title_screen",
+          "params": [],
+          "returnType": "void",
+          "line": 192,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [
+        {
+          "name": "play_pressed",
+          "line": 8
+        },
+        {
+          "name": "play_button",
+          "line": 22
+        },
+        {
+          "name": "and",
+          "line": 166
+        }
+      ],
+      "exports": [],
+      "emitsSignals": [
+        {
+          "signal": "play_pressed",
+          "line": 169
+        }
+      ],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "BackgroundImage",
+        "BackgroundColor",
+        "MainContainer/ButtonContainer/PlayButton",
+        "MainContainer/TitleContainer/GameTitle",
+        "MainContainer/TitleContainer",
+        "MainContainer"
+      ],
+      "preloads": [],
+      "checksum": "dfa9fdf0e3e4a26af4ee63481f9f546d",
+      "lastModified": 1767956318491.935
+    },
+    {
+      "path": "code/UI/ui_layer.gd",
+      "extends": "CanvasLayer",
+      "functions": [
+        {
+          "name": "_ready",
+          "params": [],
+          "line": 11,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "_unhandled_input",
+          "params": [
+            {
+              "name": "event"
+            }
+          ],
+          "line": 37,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": true
+        },
+        {
+          "name": "toggle_pause",
+          "params": [],
+          "line": 42,
+          "isPrivate": false,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_on_PauseButton_pressed",
+          "params": [],
+          "line": 63,
+          "isPrivate": true,
+          "isCallback": true,
+          "isLifecycle": false
+        },
+        {
+          "name": "_update_crosshair_visibility",
+          "params": [],
+          "returnType": "void",
+          "line": 66,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        },
+        {
+          "name": "_update_aim_cursor_visibility",
+          "params": [],
+          "returnType": "void",
+          "line": 86,
+          "isPrivate": true,
+          "isCallback": false,
+          "isLifecycle": false
+        }
+      ],
+      "signals": [],
+      "exports": [],
+      "emitsSignals": [],
+      "connectsSignals": [],
+      "nodeAccesses": [
+        "CenterContainer/PauseLabel",
+        "MarginContainer/PauseButton",
+        "Crosshair",
+        "AimCursor"
+      ],
+      "preloads": [
+        "game_config.cfg"
+      ],
+      "checksum": "b15286c48539c43de87f3a3b91b92e93",
+      "lastModified": 1761553057294.176
+    }
+  ],
+  "scenes": [
+    {
+      "path": "assets/audio_setup.tscn",
+      "rootType": "Node",
+      "rootName": "AudioSetup",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "3df19ab4139c672ba96606d4bedc45e0",
+      "lastModified": 1769175152555.77
+    },
+    {
+      "path": "assets/destination_marker.tscn",
+      "rootType": "MeshInstance3D",
+      "rootName": "DestinationMarker",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "98cf93f3a17b0f87585a6775746f5775",
+      "lastModified": 1760470242136.2554
+    },
+    {
+      "path": "assets/projectile.tscn",
+      "rootType": "RigidBody3D",
+      "rootName": "Projectile",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "49d6fcae09afc21cb889ffc666ab3c91",
+      "lastModified": 1761553895249.073
+    },
+    {
+      "path": "assets/projectile_hit_effect.tscn",
+      "rootType": "GPUParticles3D",
+      "rootName": "HitEffect",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "9207846123502454d07e336dd9bbd4e2",
+      "lastModified": 1760470242060.3887
+    },
+    {
+      "path": "assets/red_box.tscn",
+      "rootType": "RigidBody3D",
+      "rootName": "RedBox",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "96a4f70ae8da7a5096a4e2a7ce867ce9",
+      "lastModified": 1760524591224.3855
+    },
+    {
+      "path": "assets/tank_projectile.tscn",
+      "rootType": "RigidBody3D",
+      "rootName": "TankProjectile",
+      "signalConnections": [
+        {
+          "signal": "body_entered",
+          "from": ".",
+          "to": ".",
+          "method": "_on_body_entered"
+        }
+      ],
+      "instancedScenes": [],
+      "checksum": "2002423181beeb9d1dcd7647b31b1ab9",
+      "lastModified": 1761210537518.0981
+    },
+    {
+      "path": "assets/UI/aim_cursor.tscn",
+      "rootType": "Control",
+      "rootName": "AimCursor",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "7ed8cc24e0cdda25adf97781ab524d68",
+      "lastModified": 1761475830400.3494
+    },
+    {
+      "path": "assets/UI/crosshair.tscn",
+      "rootType": "CenterContainer",
+      "rootName": "Crosshair",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "f0a3ccafeb99cb20250c9badedbff88c",
+      "lastModified": 1761316349084.0005
+    },
+    {
+      "path": "assets/UI/title_screen.tscn",
+      "rootType": "CanvasLayer",
+      "rootName": "TitleScreen",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "f41a7dbd1aab93f5bce118f8443464b2",
+      "lastModified": 1761566519418.5095
+    },
+    {
+      "path": "assets/UI/ui_layer.tscn",
+      "rootType": "CanvasLayer",
+      "rootName": "UILayer",
+      "signalConnections": [
+        {
+          "signal": "pressed",
+          "from": "MarginContainer/PauseButton",
+          "to": ".",
+          "method": "_on_PauseButton_pressed"
+        }
+      ],
+      "instancedScenes": [],
+      "checksum": "ca39f7de30290b6080105b20f9c9ddad",
+      "lastModified": 1761475405238.3115
+    },
+    {
+      "path": "assets/vehicles/tank_kenney_01.tscn",
+      "rootType": "Node3D",
+      "rootName": "TankModel",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "05bf7f30b1967110786393ea7fee158d",
+      "lastModified": 1761893742258.3904
+    },
+    {
+      "path": "assets/weapons/debug_barrel.tscn",
+      "rootType": "Node3D",
+      "rootName": "DebugBarrel",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "a13dab5934097ede0140d08555007389",
+      "lastModified": 1761210537807.2642
+    },
+    {
+      "path": "assets/weapons/fps_pistol.tscn",
+      "rootType": "Node3D",
+      "rootName": "FPSPistol",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "a3d9505c5604433ae4a985cc75faf150",
+      "lastModified": 1761210537628.2632
+    },
+    {
+      "path": "assets/weapons/topdown_gun.tscn",
+      "rootType": "Node3D",
+      "rootName": "TopDownGun",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "56fb3db7f73dc0efe91d8ee89dce2534",
+      "lastModified": 1761210537685.2612
+    },
+    {
+      "path": "assets/weapons/tps_rifle.tscn",
+      "rootType": "Node3D",
+      "rootName": "TPSRifle",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "d6128fa78c4fb11bddf26630a712197f",
+      "lastModified": 1761210537748.263
+    },
+    {
+      "path": "main.tscn",
+      "rootType": "Node3D",
+      "rootName": "Main",
+      "signalConnections": [],
+      "instancedScenes": [],
+      "checksum": "e34c559cfab2def5a6d65fa2ab12abe6",
+      "lastModified": 1767956071572.2944
+    }
+  ],
+  "signalFlows": [
+    {
+      "signal": "loaded",
+      "emitters": [
+        "addons/music_manager/music_manager.gd",
+        "addons/sound_manager/sound_manager.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "banks_updated",
+      "emitters": [
+        "addons/music_manager/music_manager.gd",
+        "addons/sound_manager/sound_manager.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "MusicManager",
+      "emitters": [
+        "addons/music_manager/music_manager.gd",
+        "addons/music_manager/music_manager.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "updated",
+      "emitters": [
+        "addons/music_manager/music_manager.gd",
+        "addons/sound_manager/sound_manager.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "stopped",
+      "emitters": [
+        "addons/music_manager/stemmed_music_stream_player.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "auto_loop_completed",
+      "emitters": [
+        "addons/music_manager/stemmed_music_stream_player.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "released",
+      "emitters": [
+        "addons/sound_manager/pooled_audio_stream_player.gd",
+        "addons/sound_manager/pooled_audio_stream_player_2d.gd",
+        "addons/sound_manager/pooled_audio_stream_player_3d.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "pools_updated",
+      "emitters": [
+        "addons/sound_manager/sound_manager.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "SoundManager",
+      "emitters": [
+        "addons/sound_manager/sound_manager.gd",
+        "addons/sound_manager/sound_manager.gd",
+        "addons/sound_manager/sound_manager.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "audio_ready",
+      "emitters": [
+        "code/audio_manager.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "shot_fired",
+      "emitters": [
+        "code/components/shooting_component.gd",
+        "code/components/shooting_component.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "ammo_changed",
+      "emitters": [
+        "code/components/shooting_component.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "reload_started",
+      "emitters": [
+        "code/components/shooting_component.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "reload_finished",
+      "emitters": [
+        "code/components/shooting_component.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "weapon_ready",
+      "emitters": [
+        "code/components/weapon_component.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "weapon_changed",
+      "emitters": [
+        "code/components/weapon_component.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "config_loaded",
+      "emitters": [
+        "code/game_config.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "for",
+      "emitters": [
+        "code/projectile.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "play_pressed",
+      "emitters": [
+        "code/UI/title_screen.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "play_button",
+      "emitters": [
+        "code/UI/title_screen.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "and",
+      "emitters": [
+        "code/UI/title_screen.gd"
+      ],
+      "handlers": []
+    },
+    {
+      "signal": "_on_auto_loop_completed",
+      "emitters": [],
+      "handlers": [
+        {
+          "script": "addons/music_manager/music_manager.gd",
+          "method": "CONNECT_REFERENCE_COUNTED"
+        }
+      ]
+    },
+    {
+      "signal": "animation_finished",
+      "emitters": [],
+      "handlers": [
+        {
+          "script": "code/player_controllers/isometric_controller.gd",
+          "method": "Callable"
+        }
+      ]
+    },
+    {
+      "signal": "body_entered",
+      "emitters": [],
+      "handlers": [
+        {
+          "script": "assets/tank_projectile.tscn",
+          "method": "_on_body_entered"
+        }
+      ]
+    },
+    {
+      "signal": "pressed",
+      "emitters": [],
+      "handlers": [
+        {
+          "script": "assets/UI/ui_layer.tscn",
+          "method": "_on_PauseButton_pressed"
+        }
+      ]
+    }
+  ]
+}
