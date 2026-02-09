@@ -23,6 +23,9 @@ enum CameraView { TURRET, ISOMETRIC }
 @export var barrel_pitch_min: float = -12.0
 @export var barrel_pitch_max: float = 30.0
 
+@export_group("Touch")
+@export var touch_sensitivity: float = 0.005
+
 @export_group("Isometric Camera")
 @export var iso_height: float = 25.0
 @export var iso_distance: float = 20.0
@@ -66,7 +69,8 @@ func _ready() -> void:
 	if _tank_camera:
 		_tank_camera.make_current()
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if not _is_touch_mode():
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	_current_health = max_health
 	_load_config_overrides()
 	call_deferred("_find_crosshair")
@@ -84,6 +88,7 @@ func _load_config_overrides() -> void:
 	barrel_pitch_min = GameConfig.get_value("tank", "barrel_pitch_min", barrel_pitch_min)
 	barrel_pitch_max = GameConfig.get_value("tank", "barrel_pitch_max", barrel_pitch_max)
 	gravity = GameConfig.get_value("tank", "gravity", gravity)
+	touch_sensitivity = GameConfig.get_value("controls", "touch_sensitivity", touch_sensitivity)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -92,16 +97,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		_turret_target_yaw -= event.relative.x * mouse_sensitivity
-		_barrel_pitch = clampf(
-			_barrel_pitch - event.relative.y * mouse_sensitivity,
-			deg_to_rad(barrel_pitch_min),
-			deg_to_rad(barrel_pitch_max)
-		)
-		if _barrel_pivot:
-			_barrel_pivot.rotation.z = -_barrel_pitch
-		if _tank_camera:
-			_tank_camera.rotation_degrees.x = clampf(rad_to_deg(_barrel_pitch), -15.0, 60.0)
+		_apply_look_input(event.relative, mouse_sensitivity)
+
+	elif event is InputEventScreenDrag:
+		_apply_look_input(event.relative, touch_sensitivity)
 
 	if event.is_action_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -218,6 +217,28 @@ func _apply_terrain_rotation(delta: float, preserve_y: float) -> void:
 	var new_rot: Vector3 = current_rot.lerp(target_rot, terrain_rotation_speed * delta)
 	new_rot.y = preserve_y
 	rotation = new_rot
+
+
+func _apply_look_input(relative: Vector2, sensitivity: float) -> void:
+	_turret_target_yaw -= relative.x * sensitivity
+	_barrel_pitch = clampf(
+		_barrel_pitch - relative.y * sensitivity,
+		deg_to_rad(barrel_pitch_min),
+		deg_to_rad(barrel_pitch_max)
+	)
+	if _barrel_pivot:
+		_barrel_pivot.rotation.z = -_barrel_pitch
+	if _tank_camera:
+		_tank_camera.rotation_degrees.x = clampf(rad_to_deg(_barrel_pitch), -15.0, 60.0)
+
+
+func _is_touch_mode() -> bool:
+	var show_mode: String = GameConfig.get_value("controls", "show_mobile_controls", "auto")
+	if show_mode == "always":
+		return true
+	if show_mode == "never":
+		return false
+	return MobileControls.detect_mobile()
 
 
 func take_damage(amount: int) -> void:

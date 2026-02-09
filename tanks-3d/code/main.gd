@@ -12,6 +12,8 @@ func _ready() -> void:
 	if not GameConfig.is_loaded:
 		await GameConfig.config_loaded
 
+	_setup_mobile_controls()
+
 	var show_title: bool = GameConfig.get_value("title_screen", "show_title_screen", false)
 
 	if show_title and title_screen:
@@ -38,6 +40,15 @@ func _on_play_pressed() -> void:
 		player.set_physics_process(true)
 	_start_game()
 
+func _setup_mobile_controls() -> void:
+	var scene: PackedScene = load("res://assets/UI/mobile_controls.tscn")
+	if scene:
+		add_child(scene.instantiate())
+
+
 func _start_game() -> void:
 	game_started = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if not MobileControls.detect_mobile():
+		var show_mode: String = GameConfig.get_value("controls", "show_mobile_controls", "auto")
+		if show_mode != "always":
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

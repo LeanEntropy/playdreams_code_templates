@@ -27,6 +27,10 @@ window/size/viewport_height=720
 
 import/blender/enabled=false
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [input]
 
 ui_cancel={
