@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bkhtutq8xh77s"]
+[gd_scene format=4 uid="uid://bkhtutq8xh77s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ay74"]
 resource_name = "Main_Details"
@@ -270,31 +270,31 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ebayc")
 
-[node name="TankModel" type="Node3D"]
+[node name="TankModel" type="Node3D" unique_id=993549231]
 transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, 0.15, 0, -0.15, -6.55671e-09, 0, 0, 0)
 
-[node name="TankHull" type="Node3D" parent="."]
+[node name="TankHull" type="Node3D" parent="." unique_id=1541347146]
 
-[node name="Tank_body" type="MeshInstance3D" parent="TankHull"]
+[node name="Tank_body" type="MeshInstance3D" parent="TankHull" unique_id=1296662484]
 mesh = SubResource("ArrayMesh_keod1")
 
-[node name="TrackMesh_R" type="MeshInstance3D" parent="TankHull"]
+[node name="TrackMesh_R" type="MeshInstance3D" parent="TankHull" unique_id=1659273790]
 mesh = SubResource("ArrayMesh_8618d")
 
-[node name="TrackMesh_L" type="MeshInstance3D" parent="TankHull"]
+[node name="TrackMesh_L" type="MeshInstance3D" parent="TankHull" unique_id=35100134]
 mesh = SubResource("ArrayMesh_bq23c")
 
-[node name="Turret" type="Node3D" parent="."]
+[node name="Turret" type="Node3D" parent="." unique_id=1838426266]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
-[node name="TurretMesh" type="MeshInstance3D" parent="Turret"]
+[node name="TurretMesh" type="MeshInstance3D" parent="Turret" unique_id=911722853]
 mesh = SubResource("ArrayMesh_aqxwa")
 
-[node name="BarrelPivot" type="Node3D" parent="Turret"]
+[node name="BarrelPivot" type="Node3D" parent="Turret" unique_id=1598523905]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
-[node name="TankGunBarrel" type="MeshInstance3D" parent="Turret/BarrelPivot"]
+[node name="TankGunBarrel" type="MeshInstance3D" parent="Turret/BarrelPivot" unique_id=890489789]
 mesh = SubResource("ArrayMesh_af6xl")
 
-[node name="BarrelTip" type="Marker3D" parent="Turret/BarrelPivot"]
+[node name="BarrelTip" type="Marker3D" parent="Turret/BarrelPivot" unique_id=1140187382]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
