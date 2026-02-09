@@ -29,9 +29,8 @@ size = Vector2(1000, 1000)
 [sub_resource type="BoxShape3D" id="2"]
 size = Vector3(1000, 2, 1000)
 
-[sub_resource type="CapsuleShape3D" id="7"]
-radius = 0.6
-height = 1.2
+[sub_resource type="BoxShape3D" id="7"]
+size = Vector3(2.0, 0.6, 3.0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ay74"]
 resource_name = "Main_Details"
@@ -765,11 +764,10 @@ shadow_enabled = true
 spot_range = 275.757
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=401536479 groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08931, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
 script = ExtResource("1_tank")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="Player" unique_id=1199611070]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 shape = SubResource("7")
 
 [node name="PlayerTank" type="Node3D" parent="Player" unique_id=1484405391]
