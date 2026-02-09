@@ -1,10 +1,10 @@
-# Godot 4.5 3D Tank Template - AI Development Guide
+# Godot 4.6 3D Tank Template - AI Development Guide
 
 ## Project Overview
 
-A clean, modular 3D tank combat template built in Godot 4.5. Single tank controller with 3 camera modes, component-based architecture, and satisfying shooting feedback. Targets web, mobile, and desktop.
+A clean, modular 3D tank combat template built in Godot 4.6. Single tank controller with 2 camera views, component-based shooting, screen shake/muzzle flash feedback, and mobile touch input support. Targets web, mobile, and desktop.
 
-**Architecture**: Tank controller (CharacterBody3D) + CameraRig component + ShootingComponent + ShootingFeedback. All config values use `@export` with `game_config.cfg` overrides.
+**Architecture**: Tank controller (CharacterBody3D) with inline camera management + ShootingComponent + ShootingFeedback + MobileControls. All config values use `@export` with `game_config.cfg` overrides.
 
 ---
 
@@ -14,61 +14,57 @@ A clean, modular 3D tank combat template built in Godot 4.5. Single tank control
 
 ```
 Player (CharacterBody3D, script: tank_controller.gd)
-  +-- PlayerTank (Node3D)
-  |     +-- TankHull (Node3D - rotates with WASD)
-  |     |     +-- TankArmature (from FBX)
-  |     +-- Turret (Node3D - rotates with mouse X)
-  |           +-- TurretMesh
+  +-- PlayerCollision (CollisionShape3D)
+  +-- PlayerTank (instance of tank_model.tscn)
+  |     +-- TankHull (Node3D - scale 25, -90 Y rotation)
+  |     |     +-- TankArmature (Node3D - -90 X rotation, FBX coord fix)
+  |     |           +-- Tank_body (MeshInstance3D)
+  |     |           +-- TrackMesh_R (MeshInstance3D)
+  |     |           +-- TrackMesh_L (MeshInstance3D)
+  |     +-- Turret (Node3D - scale 25, -90 Y rotation, y=turret offset)
+  |           +-- TankCamera (Camera3D - 3rd person, child of turret)
   |           +-- BarrelPivot (Node3D - pitches with mouse Y)
-  |                 +-- TankGunBarrel (MeshInstance3D)
-  |                       +-- BarrelTip (Node3D - projectile spawn point)
-  +-- CameraRig (Node3D, script: camera_rig.gd)
-  |     +-- ChaseCamera (Camera3D)
-  |     +-- TopDownCamera (Camera3D)
-  |     +-- FreeCamera (Camera3D)
+  |           |     +-- TankGunBarrel (MeshInstance3D)
+  |           |           +-- BarrelTip (Marker3D - projectile spawn point)
+  |           +-- TurretMesh (MeshInstance3D)
   +-- ShootingComponent (Node, script: shooting_component.gd)
   +-- ShootingFeedback (Node, script: shooting_feedback.gd)
+
+Main (Node3D, script: main.gd)
+  +-- Player (above)
+  +-- UILayer (CanvasLayer, script: ui_layer.gd)
+  +-- TitleScreen (CanvasLayer, script: title_screen.gd)
+  +-- MobileControls (CanvasLayer, loaded at runtime by main.gd)
 ```
-
-### CameraRig (`code/components/camera_rig.gd`)
-
-Manages three camera modes. Owns mouse mode. Decoupled from tank movement.
-
-```gdscript
-enum CameraMode { CHASE, TOP_DOWN, FREE }
-
-signal camera_mode_changed(new_mode: CameraMode)
-
-# Public API
-func switch_mode(mode: CameraMode) -> void    # Activates camera + sets mouse mode
-func get_active_camera() -> Camera3D
-func get_current_mode() -> CameraMode
-func set_chase_yaw(yaw: float) -> void         # Called by tank controller
-func apply_camera_kick(pitch_degrees: float)    # Called by shooting feedback
-```
-
-| Mode | Mouse Mode | Turret Aiming | Input |
-|------|-----------|---------------|-------|
-| CHASE | CAPTURED | Mouse delta -> turret yaw | Default tank controls |
-| TOP_DOWN | VISIBLE | Mouse ground raycast -> turret faces cursor | Scroll to zoom |
-| FREE | VISIBLE | Turret holds position | Right-drag to orbit, scroll to zoom |
-
-Switch modes with **C key** (`switch_camera` input action).
 
 ### Tank Controller (`code/tank_controller.gd`)
 
-Extends `CharacterBody3D` directly (not a separate Node). Uses `_ready()`, `_unhandled_input()`, `_physics_process()`.
+Extends `CharacterBody3D`. Manages hull movement, turret rotation, terrain following, and 2 camera views. Supports both mouse and touch input.
+
+```gdscript
+enum CameraView { TURRET, ISOMETRIC }
+
+signal health_changed(current: int, max_health: int)
+```
+
+**Two camera views** (press C to switch):
+
+| View | Camera | Mouse Mode | Aiming |
+|------|--------|-----------|--------|
+| TURRET | TankCamera (child of turret) | CAPTURED | Mouse/touch drag -> turret yaw + barrel pitch |
+| ISOMETRIC | IsometricCamera (created at runtime) | CAPTURED | Same controls, overhead view |
 
 Key game-feel features:
 - **Acceleration/deceleration** via `move_toward()` (not instant velocity)
 - **Turret rotation speed limit** via `move_toward()` (configurable, can be disabled)
 - **Separate reverse speed** (slower than forward)
 - **Terrain following** with 4-corner raycasts
+- **Touch input** via `InputEventScreenDrag` for turret aiming on mobile
 - **Health stub** with `take_damage(amount)` and `health_changed` signal
 
 ### ShootingComponent (`code/components/shooting_component.gd`)
 
-Single fire rate and projectile speed (no per-mode branching). Barrel detection inlined from old WeaponComponent. Timer-based cooldown. Camera-mode-aware aiming via CameraRig.
+Fires projectiles from barrel tip on "shoot" action. Uses active camera's screen-center raycast for aiming. Timer-based cooldown. Optional ammo system.
 
 ```gdscript
 signal shot_fired
@@ -76,30 +72,35 @@ signal ammo_changed(current: int, max_ammo: int)
 
 func get_muzzle_position() -> Vector3
 func get_fire_direction() -> Vector3
-func reload() -> void
 ```
 
 ### ShootingFeedback (`code/components/shooting_feedback.gd`)
 
 Subscribes to `ShootingComponent.shot_fired`. Provides:
-- **Camera kick**: Pitch up on fire, lerp back
-- **Screen shake**: Random h/v offset on active camera
-- **Muzzle flash**: OmniLight3D at barrel tip
-- **Barrel recoil**: Push barrel pivot, spring back
+- **Screen shake**: Random h/v camera offset, decays over time
+- **Muzzle flash**: OmniLight3D at barrel tip, brief pulse
 
 All values config-driven via `[shooting]` section.
 
+### MobileControls (`code/UI/mobile_controls.gd`)
+
+Touch controls for mobile devices. Auto-detected via `OS.get_name()` and `DisplayServer.is_touchscreen_available()`.
+
+- **Virtual joystick** (left 40% of screen): Appears where you touch, feeds into Input action system
+- **Fire button** (bottom-right): Triggers "shoot" action
+- **Turret aiming** (right side drag): Handled by `tank_controller.gd` via `InputEventScreenDrag`
+- **Configurable**: `show_mobile_controls` in game_config.cfg ("auto", "always", "never")
+
 ### AimingHelper (`code/components/aiming_helper.gd`)
 
-Static utility class for raycasts:
-- `get_screen_center_target(camera, max_distance, exclude)` - Center-screen raycast
-- `get_mouse_ground_target(camera, mouse_pos, ground_y, exclude)` - Mouse-to-ground raycast
-- `calculate_fire_direction(muzzle_pos, target_pos)` - Direction vector
-- `has_clear_line_of_sight(from, to, world_3d, exclude)` - LOS check
+Static utility class. Single function:
+- `get_screen_center_target(camera, max_distance, exclude)` - Center-screen raycast for aiming
 
 ### Singleton Autoloads
 - **GameConfig** (`code/game_config.gd`): Minimal config accessor. `GameConfig.get_value(section, key, default)`
-- **Log** (`code/logger.gd`): Static logging via `class_name`. `Log.info()`, `Log.warning()`, `Log.error()`
+
+### Static Utilities
+- **Log** (`code/logger.gd`): Static logging via `class_name Log`. `Log.info()`, `Log.warning()`, `Log.error()`
 
 **Note**: `Log` is a `class_name`, NOT an autoload. Call static methods directly.
 
@@ -110,30 +111,28 @@ Static utility class for raycasts:
 ```
 tanks-3d/
 +-- code/
-|     +-- tank_controller.gd          # Hull movement, turret, terrain following
-|     +-- main.gd                     # Title screen flow, game start
+|     +-- tank_controller.gd          # Hull movement, turret, cameras, terrain
+|     +-- main.gd                     # Title screen flow, game start, mobile setup
 |     +-- game_config.gd              # Minimal config accessor (autoload)
 |     +-- logger.gd                   # Static logging utility (class_name Log)
 |     +-- tank_projectile.gd          # Projectile with gravity + hit effects
 |     +-- projectile_hit_effect.gd    # Impact particles
 |     +-- components/
-|     |     +-- camera_rig.gd         # Camera mode management (3 modes)
 |     |     +-- shooting_component.gd # Barrel detection + firing
-|     |     +-- shooting_feedback.gd  # Camera kick, shake, flash, recoil
-|     |     +-- aiming_helper.gd      # Static raycast utilities
+|     |     +-- shooting_feedback.gd  # Screen shake, muzzle flash
+|     |     +-- aiming_helper.gd      # Static raycast utility
 |     +-- UI/
 |     |     +-- ui_layer.gd           # Pause menu, crosshair visibility
 |     |     +-- title_screen.gd       # Title screen
+|     |     +-- mobile_controls.gd    # Virtual joystick + fire button
 |     +-- tools/
-|           +-- apply_tank_meshes_fixed.gd   # FBX mesh extraction
-|           +-- cleanup_tank_duplicates.gd   # Mesh cleanup
+|           +-- convert_tank_fbx.gd   # FBX-to-tank scene converter
 +-- assets/
-|     +-- UI/                         # Crosshair, title screen, UI layer scenes
-|     +-- vehicles/                   # Tank model scenes
-|     +-- weapons/                    # debug_barrel.tscn (dev only)
+|     +-- UI/                         # Crosshair, title screen, UI layer, mobile controls scenes
+|     +-- tank_model.tscn             # Default tank model scene
 |     +-- tank_projectile.tscn        # Projectile scene
 |     +-- projectile_hit_effect.tscn  # Hit effect scene
-|     +-- 3d_models/tanks/            # FBX source files
+|     +-- 3d_models/tanks/            # FBX source files (place Quaternius tanks here)
 +-- main.tscn                         # Primary game scene
 +-- game_config.cfg                   # Runtime configuration
 +-- project.godot                     # Godot project file
@@ -152,45 +151,46 @@ All components use `@export` variables with `@export_group` for inspector visibi
 capture_mouse_on_start=true
 
 [tank]
-camera_mode="chase"           # Default camera: "chase", "top_down", "free"
-forward_speed=10.0
-reverse_speed=4.0
+forward_speed=18.0
+reverse_speed=8.0
 hull_turn_speed=2.0
-acceleration=4.0
-deceleration=6.0
+acceleration=20.0
+deceleration=25.0
 turret_speed_limited=true
 turret_rotation_speed=3.0
 mouse_sensitivity=0.003
 barrel_pitch_min=-12.0
 barrel_pitch_max=30.0
-camera_follow_speed=12.0
-topdown_camera_height=20.0
-topdown_min_zoom=10.0
-topdown_max_zoom=40.0
-free_cam_distance=15.0
-fov=75.0
 
 [shooting]
-fire_rate=2.0                 # Seconds between shots (cannon rhythm)
+fire_rate=1.0
 projectile_speed=55.0
 projectile_gravity_scale=0.1
 screen_shake_enabled=true
 screen_shake_intensity=0.03
-camera_kick_degrees=2.5
 muzzle_flash_enabled=true
-barrel_recoil_distance=0.1
 
 [projectile]
 mesh_radius=0.2
 mesh_color="000000"
+emission_energy=2.0
+light_enabled=true
+light_color="FF8800"
+light_energy=4.0
+light_range=5.0
 lifetime=8.0
 damage=25
 hit_effect_enabled=true
+hit_flash_duration=0.3
+hit_flash_color="FFAA00"
+hit_particle_count=20
 
 [ui]
 show_crosshair=true
 crosshair_size=4.0
 crosshair_color="FFFFFF"
+show_fps=false
+show_debug_info=false
 
 [title_screen]
 show_title_screen=false
@@ -198,15 +198,19 @@ show_title_screen=false
 [controls]
 pause_key_primary="P"
 pause_key_secondary="Escape"
+show_mobile_controls="auto"
+touch_sensitivity=0.005
 ```
 
 ### Input Actions
-- **WASD**: Tank movement and hull rotation
-- **Mouse**: Turret rotation (chase mode) / cursor aiming (top-down mode)
-- **Left click / shoot**: Fire projectile
-- **C / switch_camera**: Cycle camera modes
+- **WASD / Arrow keys**: Tank movement and hull rotation
+- **Mouse**: Turret rotation (desktop)
+- **Touch drag** (right side): Turret rotation (mobile)
+- **Left click / Space / RT**: Fire projectile
+- **C / Y button**: Switch camera view
 - **P / Escape**: Pause
-- **Gamepad**: Left stick = move, right stick = turret, RT = shoot, Y = switch camera
+- **Virtual joystick** (mobile): Movement
+- **Fire button** (mobile): Shoot
 
 ---
 
@@ -214,7 +218,7 @@ pause_key_secondary="Escape"
 
 ### Adjusting Tank Feel
 
-Edit `game_config.cfg` `[tank]` section. Key values:
+Edit `game_config.cfg` `[tank]` section:
 - `acceleration` / `deceleration`: Higher = snappier, lower = heavier feel
 - `turret_rotation_speed`: Lower = more realistic turret lag
 - `turret_speed_limited=false`: Instant turret snap (arcade mode)
@@ -223,24 +227,32 @@ Edit `game_config.cfg` `[tank]` section. Key values:
 ### Adjusting Shooting Feel
 
 Edit `game_config.cfg` `[shooting]` section:
-- `fire_rate=2.0`: Cannon rhythm. Lower = faster firing
-- `camera_kick_degrees=2.5`: Recoil punch. 0 = no kick
+- `fire_rate=1.0`: Seconds between shots. Lower = faster firing
 - `screen_shake_intensity=0.03`: Shake amplitude. 0 = no shake
-- `barrel_recoil_distance=0.1`: Visual barrel kickback
+- `muzzle_flash_enabled=true`: Toggle muzzle flash light
 
 ### Adding a New Component
 
 1. Create `code/components/my_component.gd`
-2. Use `@export` for config, `_load_config_overrides()` for cfg file
+2. Use `@export` with `@export_group` for config, add `_load_config_overrides()` for cfg
 3. Add as child of Player in `main.tscn`
-4. Connect to existing signals (e.g., `shot_fired`, `health_changed`, `camera_mode_changed`)
+4. Connect to existing signals (e.g., `shot_fired`, `health_changed`)
 
 ### Replacing the Tank Model
 
-1. Place FBX in `assets/3d_models/tanks/`
-2. Configure constants in `code/tools/apply_tank_meshes_fixed.gd`
-3. Run cleanup script, then apply script from Godot editor
-4. See `.claude/skills/replace_vehicle_mesh.md` for full guide
+Use the FBX converter tool with Quaternius "Tank Pack June 2019" (CC0, free at quaternius.com):
+
+1. Copy FBX files into `res://assets/3d_models/tanks/`
+2. Let Godot import them (reopen project if needed)
+3. Run `code/tools/convert_tank_fbx.gd` via File > Run in the Godot editor
+4. Output scenes appear in `res://assets/vehicles/`
+5. In `main.tscn`, change the PlayerTank instance to use the generated scene
+
+The converter produces scenes with the exact node hierarchy the game code expects, including TankCamera and BarrelTip. Compatible with all 4 Quaternius tank variants (Tank.fbx through Tank4.fbx).
+
+### Testing Mobile Controls on Desktop
+
+Set `show_mobile_controls="always"` in `game_config.cfg` `[controls]` section. The virtual joystick and fire button will appear. Mouse clicks emulate touch events (via `emulate_touch_from_mouse` in project settings).
 
 ---
 
@@ -249,26 +261,20 @@ Edit `game_config.cfg` `[shooting]` section:
 ### Signal Flow
 
 ```
-tank_controller.gd
-  -> CameraRig.set_chase_yaw()     (every physics frame)
-  -> health_changed signal          (on take_damage)
-
-CameraRig
-  -> camera_mode_changed signal     (on C key / switch_mode)
-  -> Consumed by: ui_layer.gd (crosshair), tank_controller.gd (aiming mode)
-
 ShootingComponent
   -> shot_fired signal              (on fire)
   -> ammo_changed signal            (on fire/reload)
-  -> Consumed by: ShootingFeedback (kick/shake/flash/recoil)
+  -> Consumed by: ShootingFeedback (shake/flash)
 
-ShootingFeedback
-  -> CameraRig.apply_camera_kick()  (on shot_fired)
+tank_controller.gd
+  -> health_changed signal          (on take_damage)
 ```
 
-### Mouse Mode Ownership
+### Mouse Mode
 
-CameraRig exclusively owns `Input.set_mouse_mode()`. On pause, `ui_layer.gd` sets VISIBLE; on unpause, it calls `CameraRig.switch_mode()` to restore the correct mode.
+- **Desktop**: `tank_controller.gd` captures mouse in `_ready()`. `ui_layer.gd` sets VISIBLE on pause, re-captures on unpause.
+- **Mobile**: Mouse is never captured. Touch controls handle all input.
+- **Desktop with `show_mobile_controls="always"`**: Mouse stays visible for touch emulation testing.
 
 ### Barrel Tip Detection
 
@@ -277,18 +283,25 @@ ShootingComponent finds barrel tip automatically:
 2. If missing, calculates from mesh AABB (tip at far end of barrel in -Z)
 3. Creates `BarrelTip` Node3D at calculated position
 
-### Web Compatibility
+### Touch Input Architecture
+
+- `MobileControls._input()` handles joystick + fire button touches, consuming them via `set_input_as_handled()`
+- Remaining touches (right-side drags) propagate to `tank_controller._unhandled_input()` as `InputEventScreenDrag`
+- Joystick feeds into the same `Input.action_press()`/`Input.action_release()` as keyboard, so movement code works unchanged
+
+### Web/Mobile Compatibility
 
 - Uses CPUParticles3D (not GPU) for Compatibility renderer support
 - OmniLight3D for muzzle flash (universally supported)
 - No GPU-only shader features
+- Touch controls auto-detected for mobile and web with touchscreen
 
 ---
 
 ## Code Style
 
 - **Files**: `snake_case.gd`
-- **Classes**: `PascalCase` (`class_name CameraRig`)
+- **Classes**: `PascalCase` (`class_name ShootingComponent`)
 - **Functions**: `snake_case()`, private prefixed with `_`
 - **Variables**: `snake_case`, private prefixed with `_`
 - **Constants**: `SCREAMING_SNAKE_CASE`
@@ -305,24 +318,25 @@ ShootingComponent finds barrel tip automatically:
 3. **Use signals** for inter-component communication (check signal flow above)
 4. **Use `Log.info()` / `Log.warning()` / `Log.error()`** for logging
 5. **Add static typing** to all new code
-6. **Use CPUParticles3D** for particles (web compatibility)
-7. **Connect to CameraRig signals** when behavior depends on camera mode
-8. **Config overrides**: Always provide `@export` defaults, override in `_load_config_overrides()`
-9. **Node-moving approach** for FBX mesh extraction (never duplicate mesh resources)
-10. **Test all 3 camera modes** after changes that affect aiming or camera
+6. **Use CPUParticles3D** for particles (web/mobile compatibility)
+7. **Config overrides**: Always provide `@export` defaults, override in `_load_config_overrides()`
+8. **Test both camera views** after changes that affect aiming or camera
+9. **Test mobile controls** after changes that affect input handling
 
 ### Key Files
-- `code/tank_controller.gd` - Main tank logic (~248 lines)
-- `code/components/camera_rig.gd` - Camera system (~296 lines)
-- `code/components/shooting_component.gd` - Firing system (~212 lines)
-- `code/components/shooting_feedback.gd` - Juice effects (~157 lines)
+- `code/tank_controller.gd` - Main tank logic (~247 lines)
+- `code/components/shooting_component.gd` - Firing system (~169 lines)
+- `code/components/shooting_feedback.gd` - Juice effects (~79 lines)
+- `code/UI/mobile_controls.gd` - Touch controls (~175 lines)
+- `code/tools/convert_tank_fbx.gd` - FBX converter tool (~308 lines)
 - `game_config.cfg` - All runtime configuration
 
 ---
 
 ## Version Info
 
-- **Godot Version**: 4.5
+- **Godot Version**: 4.6
 - **Project Type**: 3D Tank Combat Template
-- **Template Version**: 3.0 (Refactored to tank-only architecture)
+- **Tank Model Source**: Quaternius "Tank Pack June 2019" (CC0 license)
+- **Template Version**: 4.0 (Cleaned up, touch input, FBX converter)
 - **Last Updated**: February 2026
