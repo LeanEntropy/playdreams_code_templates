@@ -147,9 +147,6 @@ All components use `@export` variables with `@export_group` for inspector visibi
 ### game_config.cfg
 
 ```ini
-[global]
-capture_mouse_on_start=true
-
 [tank]
 forward_speed=18.0
 reverse_speed=8.0

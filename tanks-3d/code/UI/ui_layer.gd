@@ -37,7 +37,10 @@ func toggle_pause():
 		pause_label.hide()
 		pause_button.text = "Pause"
 		_update_crosshair_visibility()
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if not MobileControls.detect_mobile():
+			var show_mode: String = GameConfig.get_value("controls", "show_mobile_controls", "auto")
+			if show_mode != "always":
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_PauseButton_pressed():
 	toggle_pause()
