@@ -86,6 +86,7 @@ script = ExtResource("1_tank")
 shape = SubResource("7")
 
 [node name="PlayerTank" parent="Player" unique_id=868287353 instance=ExtResource("3_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39599037, 0)
 
 [node name="ShootingComponent" type="Node" parent="Player" unique_id=1483009528]
 script = ExtResource("4_shooting")
