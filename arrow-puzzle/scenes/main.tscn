@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/start_screen.tscn" id="2_start"]
+[ext_resource type="PackedScene" path="res://scenes/game_board.tscn" id="3_board"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://scenes/victory_screen.tscn" id="5_victory"]
+[ext_resource type="PackedScene" path="res://scenes/settings_screen.tscn" id="6_settings"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="StartScreen" type="CanvasLayer" parent="." instance=ExtResource("2_start")]
+
+[node name="SettingsScreen" type="CanvasLayer" parent="." instance=ExtResource("6_settings")]
+
+[node name="GameBoard" type="Node2D" parent="." instance=ExtResource("3_board")]
+
+[node name="HUD" type="CanvasLayer" parent="." instance=ExtResource("4_hud")]
+
+[node name="VictoryScreen" type="CanvasLayer" parent="." instance=ExtResource("5_victory")]

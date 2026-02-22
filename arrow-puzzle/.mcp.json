@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "game-design-knowledge": {
+      "type": "http",
+      "url": "https://playdreams-staging.up.railway.app/api/mcp/game-design"
+    },
+    "asset-bank": {
+      "type": "http",
+      "url": "https://playdreams-staging.up.railway.app/api/mcp/assets"
+    }
+  }
+}

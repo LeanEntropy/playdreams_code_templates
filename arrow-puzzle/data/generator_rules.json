@@ -1,0 +1,28 @@
+{
+  "tiers": [
+    {
+      "name": "Easy",
+      "grid_columns": [4, 5],
+      "grid_rows": [4, 5],
+      "arrow_count": [3, 5]
+    },
+    {
+      "name": "Medium",
+      "grid_columns": [5, 6],
+      "grid_rows": [5, 7],
+      "arrow_count": [4, 6]
+    },
+    {
+      "name": "Hard",
+      "grid_columns": [6, 8],
+      "grid_rows": [7, 9],
+      "arrow_count": [4, 6]
+    },
+    {
+      "name": "Expert",
+      "grid_columns": [7, 9],
+      "grid_rows": [8, 10],
+      "arrow_count": [4, 7]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+    "id": "arrow-puzzle",
+    "name": "Arrow Puzzle",
+    "version": "1.0.0",
+    "dimension": "2d",
+    "godotVersion": "4.6",
+    "genreIds": [
+        "casual/puzzle/arrow-puzzle",
+        "casual/puzzle/path-clearing",
+        "casual/puzzle"
+    ],
+    "keywords": [
+        "arrow puzzle",
+        "arrows",
+        "arrow game",
+        "tap to clear",
+        "path clearing",
+        "grid puzzle",
+        "slide puzzle",
+        "exit puzzle",
+        "unblock puzzle",
+        "logic puzzle",
+        "mobile puzzle",
+        "casual puzzle"
+    ],
+    "features": [
+        "grid-based-puzzle",
+        "tap-to-clear-mechanic",
+        "path-blocking-logic",
+        "procedural-level-generation",
+        "level-editor-tool",
+        "hearts-lives-system",
+        "difficulty-tiers",
+        "zoom-and-pan",
+        "theme-system",
+        "entrance-exit-animations",
+        "haptic-feedback",
+        "sound-manager",
+        "progress-persistence",
+        "non-rectangular-grid-shapes"
+    ],
+    "coreFiles": [
+        "scripts/game_board.gd",
+        "scripts/arrow.gd",
+        "scripts/grid_system.gd",
+        "scripts/level_generator.gd",
+        "scripts/config.gd",
+        "scripts/game_manager.gd"
+    ],
+    "customizableAreas": [
+        {
+            "area": "visual-theme",
+            "files": ["scripts/config.gd"],
+            "description": "Switch THEME constant between 'minimal' (black/white) and 'pastel' (colorful rounded). Add custom themes by extending THEMES dictionary.",
+            "priority": "high"
+        },
+        {
+            "area": "level-design",
+            "files": ["data/levels.json", "data/generator_rules.json"],
+            "description": "Pre-designed levels and procedural generation tier rules (grid sizes, arrow counts)",
+            "priority": "high"
+        },
+        {
+            "area": "game-rules",
+            "files": ["scripts/config.gd"],
+            "description": "Hearts count, animation speeds, zoom limits, grid margins, difficulty curve",
+            "priority": "high"
+        },
+        {
+            "area": "arrow-geometry",
+            "files": ["scripts/config.gd", "scripts/arrow.gd"],
+            "description": "Arrow body width, head size, tail length, cell sizing ratios",
+            "priority": "medium"
+        },
+        {
+            "area": "level-editor",
+            "files": ["scripts/generator_screen.gd"],
+            "description": "Built-in level editor with shape masking, play-testing, solution overlay",
+            "priority": "medium"
+        },
+        {
+            "area": "audio",
+            "files": ["assets/audio/", "scripts/audio_manager.gd"],
+            "description": "Sound effects for tap, exit, blocked, level clear, UI click",
+            "priority": "low"
+        }
+    ],
+    "summary": "Grid-based arrow puzzle where players tap arrows to clear them when their exit path is unblocked. Features procedural level generation with Hamiltonian path algorithm, built-in level editor with shape masking, two visual themes (minimal/pastel), difficulty tiers, and mobile-optimized controls with zoom/pan."
+}

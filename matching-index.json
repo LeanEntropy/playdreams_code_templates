@@ -90,9 +90,9 @@
         "bubble pop",
         "bubble game",
         "match bubbles",
-        "aim and shoot",
         "bubble puzzle",
-        "casual puzzle"
+        "hex grid bubbles",
+        "bubble chain pop"
       ],
       "features": [
         "hex-grid-system",
@@ -116,8 +116,8 @@
         "candy crush",
         "gem matching",
         "tile matching",
-        "puzzle game",
-        "swap tiles"
+        "swap tiles",
+        "match three"
       ],
       "features": [
         "grid-system",
@@ -152,6 +152,56 @@
         "save-load-system"
       ],
       "summary": "2D character creation and customization with simple grid/area movement. Includes UI panels for customization options."
+    },
+    {
+      "id": "mahjong-solitaire",
+      "name": "Mahjong Solitaire",
+      "dimension": "2d",
+      "genreIds": [
+        "casual/puzzle/mahjong-solitaire",
+        "casual/puzzle/tile-matching",
+        "casual/puzzle"
+      ],
+      "keywords": [
+        "mahjong",
+        "mahjong solitaire",
+        "shanghai",
+        "tile matching",
+        "pair matching",
+        "tile stacking",
+        "layered tiles",
+        "free tile",
+        "mahjong tiles",
+        "solitaire puzzle",
+        "matching pairs",
+        "board clearing",
+        "timed puzzle",
+        "classic mahjong"
+      ],
+      "features": [
+        "layered-tile-board",
+        "free-tile-detection",
+        "solvable-board-generation",
+        "tile-pair-matching",
+        "combo-scoring-system",
+        "timed-gameplay",
+        "multiple-level-layouts",
+        "hint-system",
+        "match-animations",
+        "pause-system",
+        "score-breakdown",
+        "config-driven-design"
+      ],
+      "summary": "Classic Mahjong Solitaire with layered tile boards, pair-matching mechanics, guaranteed-solvable board generation, combo scoring, timed gameplay, and multiple difficulty layouts."
+    },
+    {
+      "id": "arrow-puzzle",
+      "name": "Arrow Puzzle",
+      "dimension": "2d",
+      "genreIds": ["casual/puzzle/arrow-puzzle", "casual/puzzle/path-clearing", "casual/puzzle"],
+      "keywords": ["arrow puzzle", "arrows", "arrow game", "tap to clear", "path clearing", "grid puzzle", "slide puzzle", "exit puzzle", "unblock puzzle", "logic puzzle", "mobile puzzle", "casual puzzle"],
+      "features": ["grid-based-puzzle", "tap-to-clear-mechanic", "path-blocking-logic", "procedural-level-generation", "level-editor-tool", "hearts-lives-system", "difficulty-tiers", "zoom-and-pan", "theme-system", "entrance-exit-animations", "haptic-feedback", "sound-manager", "progress-persistence", "non-rectangular-grid-shapes"],
+      "summary": "Grid-based arrow puzzle where players tap arrows to clear them when their exit path is unblocked. Features procedural level generation with Hamiltonian path algorithm, built-in level editor with shape masking, two visual themes (minimal/pastel), difficulty tiers, and mobile-optimized controls with zoom/pan."
     }
   ]
 }
